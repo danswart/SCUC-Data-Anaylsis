@@ -1,0 +1,29 @@
+---
+title: "Test"
+format: 
+  html: 
+    css: swart.css
+execute:
+  echo: false
+---
+
+```{r}
+# This is a test of execute
+print("If you see the commented code above, execute: isn't working")
+
+```
+
+
+# h1
+
+## h2
+
+### h3
+
+#### h4
+
+
+```{r}
+#| echo: false
+1 + 1
+```

@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="QUARTO TEST_files/libs/clipboard/clipboard.min.js"></script>
+<script src="QUARTO TEST_files/libs/quarto-html/tabby.min.js"></script>
+<script src="QUARTO TEST_files/libs/quarto-html/popper.min.js"></script>
+<script src="QUARTO TEST_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="QUARTO TEST_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="QUARTO TEST_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="QUARTO TEST_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="QUARTO TEST_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.4.550">
+
+  <meta name="author" content="Dan Swart">
+  <meta name="author" content="SCUC-ISD Board of Trustees">
+  <meta name="author" content="Seat 6">
+  <meta name="dcterms.date" content="2024-02-29">
+  <title>Analyzing School District Data for Improvement</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="QUARTO TEST_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="QUARTO TEST_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="QUARTO TEST_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="swart-20240104.css">
+  <link rel="stylesheet" href="tachyons.min.css">
+  <link rel="stylesheet" href="r-colors.css">
+  <link href="QUARTO TEST_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="QUARTO TEST_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="QUARTO TEST_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="QUARTO TEST_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="QUARTO TEST_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="QUARTO TEST_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Analyzing School District Data for Improvement</h1>
+  <p class="subtitle"><strong><em>The Power of QUARTO</em></strong></p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dan Swart 
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+SCUC-ISD Board of Trustees 
+</div>
+</div>
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Seat 6 
+</div>
+</div>
+</div>
+
+  <p class="date">February 29, 2024</p>
+</section>
+<section class="slide level2">
+
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>“My aim here is to contribute something to the improvement of learning in our school district; or any school district. My goal is to build a collabrative community in the education domain helping each other find better and better ways of using data to guide, improve and govern their systems of learning.</p>
+<p>I look forward to the day when everyone at every level is comfortable sketching a simple flow diagram, trying some changes, and plotting the results to see if the changes worked. This straightforward process makes possible and encourages the study of different methods of learning and administration (inputs) and their impact on the results observed (outputs) <strong><em>at the local level.</em></strong> Those interested in using data to help improve learning in their district please feel free to contact me.” </p>
+<div style="text-align: right;">
+<p>– Dan Swart</p>
+</div>
+</div>
+</div>
+</div>
+<p><br> </p>
+</section>
+<section id="introduction" class="title-slide slide level1 center">
+<h1><strong>INTRODUCTION</strong></h1>
+<p>Everyone at every level in a school district is trying to answer important, practical questions and seek data to help them. Those questions include:</p>
+<ul>
+<li><p>The numbers vary from time period to time period. <strong>Does that variation signal anything important?</strong></p></li>
+<li><p>Is the variation I see due to normal <strong>random fluctuations</strong> that are present in all measurements, or to some strong influence(s) now present in the system?</p></li>
+<li><p>Do the varying numbers <strong>constitute a trend</strong> (good, or bad)?</p></li>
+<li><p>What is the <strong>demonstrated output capability</strong> of our district to deliver STAAR scores (or any other results) in the various categories and levels? In other words, what is <strong>rational</strong> to expect from our system <strong>in the future?</strong></p></li>
+<li><p><strong>Should we continue</strong> a particular approach, <strong>abandon</strong> it, or <strong>continue it with modification?</strong></p></li>
+<li><p>Should we change something right away with an intervention, <strong>or will that make things worse?</strong></p></li>
+<li><p>Under current leadership, are we improving, staying the same, or getting worse, and <strong>how can we tell?</strong></p></li>
+</ul>
+<p><br></p>
+<p><strong><em>If you are a board member, district employee, or concerned citizen who asks themselves questions like these, this paper can help you. If you find little value in changing how you use data as a guide for action, this paper is definitely not for you.</em></strong></p>
+<p><br></p>
+<p>This paper is for anyone striving to improve learning in their school district and who think data can help them. Anyone can use the simple theory and techniques to significantly improve their teaching, classrooms, campuses, departments and districts.</p>
+<p>To improve our systems of learning in a rational, systematic way we need new information beyond that supplied by merely ‘description-only’ reports. Only a few simple changes are required.</p>
+<p>Currently, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) offer training or support in the appropriate methods and tools that would give school boards and administrators access to the new information they need.</p>
+<p>I predict that educators who learn to draw a very simple flow diagram and very simple charts can (and will) improve any results they wish to improve. These simple tools allow anyone to examine how the inputs of a learning process may (or may not) affect the outputs of the process. Although they are prettier coming from a computer, they can, quite literally, be constructed with a piece of newsprint and a crayon.</p>
+<p>Thus, anyone can experiment on a small scale and evaluate the results before attempting large scale changes. Those results are easily shared with others, such as school boards and administrators, and form a rational basis for understanding the results observed and any proposed changes.</p>
+<p>All that is required is an open mind, willingness to do things a little differently, and a sense of urgency for getting things done. That sounds like Texans, to me.</p>
+<p><br></p>
+</section>
+
+<section>
+<section id="background" class="title-slide slide level1 center scrollable">
+<h1><strong>BACKGROUND</strong></h1>
+<p>All school boards and superintendents work very hard to ‘keep the lights on’ and improve learning in their districts and campuses (or ‘campi’ if you prefer the Latin form, because it <strong><em>is</em></strong> funnier).</p>
+<p>Administration of budgets for facilities, equipment, personnel, safety and legislative compliance is a function of the managerial skill of the executive team and the school board. It is usually well managed with thoughtful planning and careful attention to fiscal details. Both TEA and TASB supply quality education and support for the budgeting element of school board responsibility.</p>
+<p>Improving learning in a district is a very different challenge and requires a different set of skills and knowledge.</p>
+<p>Currently, there are dozens of situations where we need better ways to evaluate our data.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div id="emiccswzur" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#emiccswzur table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#emiccswzur thead, #emiccswzur tbody, #emiccswzur tfoot, #emiccswzur tr, #emiccswzur td, #emiccswzur th {
+  border-style: none;
+}
+
+#emiccswzur p {
+  margin: 0;
+  padding: 0;
+}
+
+#emiccswzur .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#emiccswzur .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#emiccswzur .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#emiccswzur .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#emiccswzur .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#emiccswzur .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#emiccswzur .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#emiccswzur .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#emiccswzur .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#emiccswzur .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#emiccswzur .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#emiccswzur .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#emiccswzur .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#emiccswzur .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#emiccswzur .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#emiccswzur .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#emiccswzur .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#emiccswzur .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#emiccswzur .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#emiccswzur .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#emiccswzur .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#emiccswzur .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#emiccswzur .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#emiccswzur .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#emiccswzur .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#emiccswzur .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#emiccswzur .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#emiccswzur .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#emiccswzur .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#emiccswzur .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#emiccswzur .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#emiccswzur .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#emiccswzur .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#emiccswzur .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#emiccswzur .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#emiccswzur .gt_left {
+  text-align: left;
+}
+
+#emiccswzur .gt_center {
+  text-align: center;
+}
+
+#emiccswzur .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#emiccswzur .gt_font_normal {
+  font-weight: normal;
+}
+
+#emiccswzur .gt_font_bold {
+  font-weight: bold;
+}
+
+#emiccswzur .gt_font_italic {
+  font-style: italic;
+}
+
+#emiccswzur .gt_super {
+  font-size: 65%;
+}
+
+#emiccswzur .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#emiccswzur .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#emiccswzur .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#emiccswzur .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#emiccswzur .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#emiccswzur .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#emiccswzur .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="font-weight: bold; background-color: #FFF8DC">Typical Situations Calling for Data Analysis</th>
+</tr>
+<tr class="odd gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="column1" style="font-weight: bold; background-color: #FFF8DC">STAAR scores</td>
+<td class="gt_row gt_left" headers="column2" style="font-weight: bold; background-color: #FFF8DC">Survey results</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="column1" style="font-weight: bold; background-color: #FFF8DC">District improvement plans</td>
+<td class="gt_row gt_left" headers="column2" style="font-weight: bold; background-color: #FFF8DC">TAPR reports</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="column1" style="font-weight: bold; background-color: #FFF8DC">Dropout rates</td>
+<td class="gt_row gt_left" headers="column2" style="font-weight: bold; background-color: #FFF8DC">Pedagogy review</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="column1" style="font-weight: bold; background-color: #FFF8DC">On-time arrivals for buses</td>
+<td class="gt_row gt_left" headers="column2" style="font-weight: bold; background-color: #FFF8DC">Attendance rates</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="column1" style="font-weight: bold; background-color: #FFF8DC">Superintendent evaluations</td>
+<td class="gt_row gt_left" headers="column2" style="font-weight: bold; background-color: #FFF8DC">Graduation rates</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="column1" style="font-weight: bold; background-color: #FFF8DC">Superintendent searches</td>
+<td class="gt_row gt_left" headers="column2" style="font-weight: bold; background-color: #FFF8DC">Accountability ratings</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<p>To make better decisions, the <strong><em>‘description-only’</em></strong> reports we currently use to evaluate the performance of programs, pedagogy, people, or anything else must come to us in a slightly different format than what we are used to seeing.</p>
+<p>Any evaluation of results must go beyond what is included in ‘snapshot’ reports, or even reports with two-point or three-point comparisons. As discussed later, trends cannot be established with only two or three data points.</p>
+<p>As it turns out, the “new” information we need is already there in our data, but it is ‘hidden’. As long as we continue to use and rely on <strong><em>‘description-only’</em></strong> reports this critical information <strong><em>will remain hidden from us.</em></strong></p>
+<p>The following report is called an <strong><em>Individuals Chart (part of an XmR chart pair)</em></strong><sup>1</sup> <sup>2</sup> and it is an example of what a report looks like that includes the information necessary to create well-codified reports, charts, and documents that are concise and reliable . This chart analyzes public STAAR data provided by TEA, and includes a brief interpretation of the chart . The XmR chart provides a baseline (context) for evaluating both past and future performance .</p>
+<p><br></p>
+<p><img data-src="pbc/xmr-2016-2022-math-approaches-combo.png"> Fig: Data taken from 5 TEA “Snapshot” description-only reports and 1 TAPR description-only report</p>
+<p><br> </p>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>The chart shown is the ‘Individuals’ chart. A complete XmR chart presentation also includes the ‘Moving Range’ chart that plots the size of the up-and-down movement between data points. The Moving Range chart is used to calculate the range of values that is considered ‘normal’ for the process (i.e., the ‘common cause’ variation present in the process). <br></p></li><li id="fn2"><p>The ‘XmR’ chart is one of a family of ‘control charts’ invented and developed by Walter A. Shewhart in 1929 while an engineer at Bell Telephone Laboratories. They are still the gold standard tool for understanding a process by separating ‘common cause’ variation from ‘special cause’ variation. The XmR chart is the “voice of the process” and reveals if your process is stable (predictable) or subject to a strong influence that makes it unpredictable.</p></li></ol></aside></section>
+<section id="interpreting-the-chart3" class="slide level2 scrollable">
+<h2>INTERPRETING THE CHART<sup>1</sup></h2>
+<ul>
+<li><p>The measurements (the outputs) do go up and down, but <strong><em>there is no numerical evidence that the movements are more than random variation</em></strong>. The ups and downs are almost certainly due to the many random forces acting on the cause system that produced the results (the inputs). This is called <strong><em>common cause variation</em></strong> because the forces acting on the system are common to all the results we see.</p></li>
+<li><p>In this case, the chart shows that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends<sup>2</sup> identified. Accordingly, the process is <strong><em>stable</em></strong>, with a <strong><em>predictable output capability</em></strong>. Of the many forces influencing the results, no one of them is predominant. If one force (or a small combination of forces) was predominate the chart would reveal it.</p></li>
+</ul>
+<!-- -->
+<ul>
+<li><p>If the process remains fundamentally the same, <strong>the proportion of students in the district taking the STAAR exam in Math that reach the level of ‘Approaches Grade Level Standard, or Higher’ will continue to fluctuate between 91% and 74%, with an average proportion of 81% (the CL)</strong>.</p></li>
+<li><p>Given the data in the chart, any expectation of results outside those limits, without a significant change to the system, <strong><em>would not be justified - at all</em></strong> (even if that expectation comes from the legislature and the TEA in the form of revised scoring criteria).</p></li>
+<li><p>Any future result, if it falls inside the calculated boundaries <strong><em>does not signify an increase or decrease in the performance of the process.</em></strong> Understanding this rule prevents ‘over-reacting’ to random fluctuations. Every ‘up’ or ‘down’ does not mean we are doing better, or worse.</p></li>
+<li><p>Confidence in the interpretation will <strong>increase</strong> as you add more data to the chart. For example, it would be helpful to add years prior to 2016 to see if our interpretation of the data changed.</p></li>
+<li><p>This one chart includes all the information this data can reveal. <strong><em>If you need or want more information you have to collect more data</em></strong>.</p></li>
+</ul>
+<p><br></p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p><span style="font-size: 1.2em;"><strong><em>With this one simple chart</em></strong> we are in a position to address each of the practical, important questions outlined earlier, at least for this particular STAAR category and level. Why would you settle for less? No other report even comes close.</span></p>
+</div>
+</div>
+</div>
+<p><br></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Interesting Observation:</strong></p>
+</div>
+<div class="callout-content">
+<p><span style="font-size: 1.2em;">Following the COVID pandemic we all heard about the loss-of-learning “crises” in schools. I wanted to see if such a “crises” could be detected using quantitative methods; not just personal opinion. The quantitative evidence of the XmR chart indicates that even the extreme government measures imposed during the COVID-19 pandemic apparently were not disruptive enough to the district to create even a single point outside the “normal” limits. Or, the counter-measures employed by the district were very effective.</span></p>
+</div>
+</div>
+</div>
+<p><br> </p>
+<aside><ol class="aside-footnotes"><li id="fn3"><p>Since interpretation of the chart concerns <strong><em>future</em></strong> results expected of the process, the chart represents evidence that should influence our degree of belief in what the future holds. Since the future is uncertain, there is always some probability that our expectation will be wrong. Additional data helps a lot to reduce the uncertainty but will never eliminate it.</p></li><li id="fn4"><p>Statistical techniques to detect ‘trends’ exist and require 7 or more data points to detect. A special ‘trend’ occurs when a point falls outside the range of ‘normal’ variation. This is called a ‘special’ cause of variation. The rules to detect these trends are easily learned and are built in to software that specializes in control chart preparation.</p></li></ol></aside></section></section>
+<section id="whats-wrong-with-the-description-only-reports-we-use-now" class="title-slide slide level1 center">
+<h1><strong>WHAT’S WRONG WITH THE ‘DESCRIPTION-ONLY’ REPORTS WE USE NOW?</strong></h1>
+<p>The aim of a TEA report is ‘description-only’. <strong><em>How many or how much.</em></strong> They are estimates of how many people belong to this or that category for a specified academic year. Or, to report the financial aspects of operations during the school year. Their aim is <strong>NOT</strong> to find out <strong>WHY</strong> there are so many or so few in this or that category: merely how many.</p>
+<p>The action to be taken is on the district, campus, or people studied. It is a process designed for handing out reward and punishment.</p>
+<p>On the other hand, school boards want to <strong><em>improve learning in the future.</em></strong></p>
+<p>Interest centers on future learning, not the learning of the past. For example: adopt Policy B over A, or hold on to Policy A, or try Policy C on a small scale (with further study).</p>
+<p>The TEA collects data from every school in Texas, performs a multitude of calculations, and produces reams of <strong><em>‘description-only’</em></strong> reports and tables summarizing their results by academic year. These <strong><em>‘description-only’</em></strong> reports consist primarily of calculations mandated by the state legislature, including those designed to allow districts to fulfill their public notification requirements.</p>
+<p>These statistical summaries are available to the public and the school districts. Unfortunately, for the public and the school districts, the information is not nearly as helpful as it could be. In fact, it takes so much ‘data wrangling’ to put it into a form that is remotely helpful for assessing and improving district and campus learning that it is simply not done.</p>
+<p>Instead, administrators and school boards stare at endless rows and columns of mind-numbing data fragments that are ‘sliced and diced’ to an extent that even <a href="https://en.wikipedia.org/wiki/Ron_Popeil"></a> <a href="https://en.wikipedia.org/wiki/Ron_Popeil" target="_blank">the inventor of the Chop-O-Matic</a> would be envious!</p>
+<p>After earnestly pouring over such <strong><em>‘description-only’</em></strong> reports users still have no rational basis to predict what results to expect in the future.</p>
+<p><br></p>
+<p>Here’s a partial example from a <strong><em>‘description-only’</em></strong> TEA report called a ‘Snapshot’: <br></p>
+<p><img data-src="img/staar-snapshot-example-2021-2022.png"> Fig: Small sample from TEAs Snapshot descrption-only report</p>
+<p>The entire report can be found here:<br>
+<a href="https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&amp;_program=perfrept.perfmast.sas&amp;_debug=0&amp;ccyy=2022&amp;lev=D&amp;id=094902&amp;prgopt=reports%2Fsnapshot%2Fsnapshot.sas"></a></p>
+<p><a href="https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&amp;_program=perfrept.perfmast.sas&amp;_debug=0&amp;ccyy=2022&amp;lev=D&amp;id=094902&amp;prgopt=reports%2Fsnapshot%2Fsnapshot.sas" target="_blank">(HTML Link)</a></p>
+<p><br> And, here’s a partial example from a TEA <strong><em>‘description-only’</em></strong> report called a ‘School Report Card’:</p>
+<p><br></p>
+<p><img data-src="img/staar-report-card-example-2021-2022.png"></p>
+<p>Fig: Small sample from TEAs School Report Card description-only report</p>
+<p><br></p>
+<p>The entire report can be found here:<br>
+<a href="https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&amp;_program=perfrept.perfmast.sas&amp;_debug=0&amp;ccyy=2022&amp;lev=C&amp;prgopt=reports/src/src.sas&amp;id=094902003"></a></p>
+<p><a href="https://rptsvr1.tea.texas.gov/cgi/sas/broker?_service=marykay&amp;_program=perfrept.perfmast.sas&amp;_debug=0&amp;ccyy=2022&amp;lev=C&amp;prgopt=reports/src/src.sas&amp;id=094902003" target="_blank">(HTML Link)</a></p>
+<p><br> </p>
+</section>
+
+<section>
+<section id="obstacles-to-improvement" class="title-slide slide level1 center">
+<h1><strong>OBSTACLES TO IMPROVEMENT</strong></h1>
+<p>So, what is a school district to make of all these mountains of numbers grouped and mixed together? Do they help districts improve learning in the future? In their present form, the answer is definitely “NO!”<br>
+<br></p>
+</section>
+<section id="obstacle-1" class="slide level2">
+<h2><strong>OBSTACLE #1</strong></h2>
+<p>When it comes to improving the system of education in a district this ‘snapshot’ view of the data has several very important limitations. One is the grouping of several categories that probably represent different processes into one group. Some TEA <strong><em>‘description-only’</em></strong> reports combine more than one rating level into a single reporting level. This assumes that the process that produced the results in one category produces the results in them all.</p>
+<p>For instance, one combines the ‘Approaches Grade Level’ AND the ‘Meets Grade Level’ AND the ‘Masters Grade Level’ ratings all into one combined group total and calls it the “Approaches Grade Level Standard AND HIGHER” level.</p>
+<p>To make that category useful for improvement efforts we have to break it into the three separate levels, so each represents a single situation (process). Currently, that turns out to be quite tedious and extremely time-consuming.</p>
+<p>The ‘Snapshot’ <strong><em>‘description-only’</em></strong> report offered by the TEA is a good example. My hat is off to their programmers. It is an impressive compilation of statistics all in one place. It is well-suited for the needs of the TEA and their reporting responsibilities to the legislature; but completely ill-suited for helping the concerned school board, superintendent, or even tax-paying citizen make an analysis aimed at improving future learning. One might call it a triumph of computation over value.<br>
+<br></p>
+<p>Although this grouping of categories permits TEA to render abstract judgments about a district or campus, the lack of specificity renders these <strong><em>‘description-only’</em></strong> reports unsuitable for understanding any particular process, category or level your board may be interested in monitoring or improving. (Be mindful that this is not TEA’s fault; they must follow the direction of the legislative intent.) <br> <br></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong><span style="font-size: 1.2em; color: forestgreen">It’s like…</span></strong></p>
+</div>
+<div class="callout-content">
+<p><span style="font-size: 1.2em;">trying to repair your car by reading the overall repair records of similar models. What you need is diagnostic data about what is happening (or not happening) with your <strong><em>specific</em></strong> vehicle.</span></p>
+</div>
+</div>
+</div>
+<p><br> </p>
+<p>Here is an example of several STAAR categories grouped together in a TEA <strong><em>‘description-only’</em></strong> report:</p>
+<p><img data-src="img/staar-snapshot-by-subj-2022-2023-annot.png"></p>
+<p>Fig: The first two rows combine more than one achievement level</p>
+<p><br> Here’s the section reporting STAAR scoring by ethnicity:</p>
+<p><img data-src="img/staar-snapshot-by-ethnicity-2022-2023-annot.png"></p>
+<p>Fig: The first two rows combine more than one achievement level</p>
+<p><br> </p>
+</section>
+<section id="obstacle-2" class="slide level2">
+<h2><strong>OBSTACLE #2</strong></h2>
+<p>These <strong><em>‘description-only’</em></strong> reports are ‘ill-suited’ for district improvement efforts for another reason: the TEA ‘description-only’ reports are <strong>siloed by academic year</strong>, making it nearly impossible to create a time-period-by-time-period data frame of any categories or levels the board may wish to analyze. In fact, without time-period-by-time-period data <strong><em>no meaningful analysis is possible.</em></strong></p>
+<p>This siloing of academic years stands as a bristling obstruction to the analysis of past performance and estimation of future results. Even the least experienced board members intuitively know the importance of numerical context when reviewing data for their district.</p>
+<p><br></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>It was our innate need for context that created the “this-month vs this-month-last-year vs year-to-date” presentations so popular today. “This vs that” presentations are two-point comparisons that waste more resources than all our unnecessary meetings put together.</p>
+</div>
+</div>
+</div>
+<p><br> </p>
+</section>
+<section id="obstacle-3" class="slide level2">
+<h2><strong>OBSTACLE #3</strong></h2>
+<p><br></p>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>
+<strong>“At sea one day you will smell land where there be no land.”</strong>
+</p>
+<p class="quote-author">
+</p><p>— Elijah, to Ishmael and Queequeg</p>
+<p></p>
+<p class="quote-description">
+</p><p><em>Moby Dick (film, 1956)</em></p>
+<p></p>
+
+</div>
+</div>
+</div>
+<p><br> </p>
+<p>Obstacle number 3 is not related to the TEA ‘description-only’ reports at all. It has to do with our human nature (or, as Jessica Rabbit put it in the 1988 film ‘Who Framed Roger Rabbit’: “I’m not bad, I’m just drawn this way!”).</p>
+<p>For survival, humans evolved with the ability to rapidly detect patterns. That instinct can lead us astray when studying our data. Unfortunately, we quite naturally see ‘trends’ and ‘signals’ where there are none.</p>
+<p>Consider that for any three measurements there are at least 10 completely random arrangements that can arise. And, we have created names to categorize these completely artificial ‘trends’ that we think we see:</p>
+<p><br></p>
+<p><img data-src="img/10-random-arrangements-of-3-measurements.png"></p>
+<p>Fig: Ten random arrangements of 3 measurements</p>
+<p><br> </p>
+<p>How many of those ‘trends’ do you see in this example of TEA data placed on a bar chart?</p>
+<p><img data-src="img/false-signals-on-bar-charts.png"></p>
+<p>Fig: Do you see any trends or signals in the bars?</p>
+<p><br> </p>
+<p>So, <strong><em>we need a report that can separate the ‘common cause’ variation (routine variation) from the ‘special cause’ variation that signals a true trend, or a detectable event that changes the system.</em></strong></p>
+<p>Our current <strong><em>‘description-only’</em></strong> reports do not make that separation for us.</p>
+<p><br> </p>
+<p><strong><em>The XmR chart does.</em></strong></p>
+<p><br> </p>
+</section>
+<section id="obstacle-4" class="slide level2">
+<h2><strong>OBSTACLE #4</strong></h2>
+<p>Obstacle #3 is about our perceptions. Obstacle #4 is about our emotions. We have a very human impulse to intervene any time we feel something is ‘wrong’ and needs to be ‘fixed.’ The incentives for board members to seek interventions are many and varied, but it is the type of change proposed that really matters.</p>
+<p>This is also a situation where board members must remain vigilant about getting involved in matters that are administrative (the responsibility of the superintendent) and not district policy (the responsibility of the board).</p>
+<p>A problem arises if we react to a result that is merely random (‘common-cause’ variation) as if it were a ‘special cause’ signal. This is called ‘tampering’ and is <strong><em>guaranteed to make things worse.</em></strong> The variation we observe will increase and our good results will be diluted accordingly. At worst, we can de-stabilize a stable system that people have worked hard to develop.</p>
+<p>This can be particularly acute when there is an incident involving misfortune or safety. Although rare, these events may be quite distracting and upsetting. However, trying to keep unpleasant events from ‘ever happening again’ is impossible and can make things worse, not better.</p>
+<p>It is part of the leadership responsibility of boards to provide a measured and rational response when misfortune comes our way. Knowing about ‘common cause’ and ‘special cause’ variation can help us do that.</p>
+<p><br> </p>
+</section></section>
+<section id="new-information-to-help-us" class="title-slide slide level1 center scrollable">
+<h1><strong>NEW INFORMATION TO HELP US</strong></h1>
+<p>What makes these proposed new reports so powerful are three unique features:</p>
+<ol type="1">
+<li><p>Prior period results for the process are <strong><em>plotted in time order</em></strong>, oldest to newest, left to right (the more time periods presented the better). This is called <strong><em>context</em></strong> and permits comparing our inputs to the outputs (results).</p></li>
+<li><p>An average (or median) for the entire group of results, plotted as a center line. If the process is stable, this is the <strong><em>best estimate for future results.</em></strong></p></li>
+<li><p>One simple calculation that sets the upper and lower bounds of results we can reasonably expect in the future. This is called <strong><em>analysis.</em></strong></p></li>
+</ol>
+<p><strong><em>All we need are just those three things</em></strong>; context, estimate of future performance, and analysis. All three use simple arithmetic; not even algebra. But, none of the <strong><em>‘’description-only’</em></strong> reports currently available have all three elements. Usually, they have none of the three.</p>
+<p>Accordingly, those <strong><em>‘description-only’</em></strong> reports cannot answer the important questions. We are left with only a vague intuition about what the data are trying to tell us. All too often intuition and personal experience have proven to be unreliable guides for action on policy, performance, and pedagogy.</p>
+<p><br> </p>
+</section>
+
+<section id="analysis---what-is-it" class="title-slide slide level1 center">
+<h1><strong>ANALYSIS - WHAT IS IT?</strong></h1>
+<p>Analysis was developed to help separate the actual signals in the data from the random fluctuations that are always present in any measurement.</p>
+<p>In this context analysis means to subject the data to <strong>ONE</strong> very simple statistical test to see if the system (or process) producing the data shows evidence of being in a <strong><em>stable state</em></strong>, with a <strong><em>predictable output capability</em></strong>.</p>
+<p>If stable, this output capability will show as a range of values that constitute ‘normal’ for the process. Until the process itself changes in some fundamental way future measurements will wander between the expected output limits; sometimes upward, sometimes downward, sometimes the same.</p>
+<p><br></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>For those thinking about the additional work needed to provide an anlysis like this when reporting data to the board, or to the public, or to each other please note that once the data was wrangled <strong><em>it took less than 5 minutes to create the XmR chart</em></strong> using a very inexpensive Excel add-in!</p>
+</div>
+</div>
+</div>
+<p><br> </p>
+</section>
+
+<section id="overcoming-the-obstacles" class="title-slide slide level1 center">
+<h1><strong>OVERCOMING THE OBSTACLES</strong></h1>
+<p>As it turns out, creating the analytic reports we need is very simple - <strong>IF</strong> we can get our data into the right form for analysis. By reporting out results in the usual <strong><em>‘description-only’</em></strong> formats, neither the Texas Education Agency (TEA) nor the Texas Association of School Boards (TASB) appear to be able to help us with this particular limitation. It is up to us to take control of our own reporting needs.</p>
+<p><br> </p>
+</section>
+
+<section id="getting-blood-from-the-turnip" class="title-slide slide level1 center">
+<h1><strong>GETTING BLOOD FROM THE TURNIP</strong></h1>
+<p>After an embarrassing amount of time spent ‘data wrangling’ I was able to construct from the 5 available TEA ‘Snapshot’ <strong><em>‘description-only’</em></strong> reports, and 1 Texas Academic Performance Report (TAPR) ‘description-only’ report, a small time-period-by-time-period data frame for STAAR scores for all subject-matter categories at the district-level for the academic years ended 2016-2022. (No STAAR scores were available for the 2019 academic year.) <br></p>
+<p>The TEA STARR Data Divided Into Constituent Parts for the subject ‘Math’</p>
+<table>
+<caption>Subject = Math, with Proportions Broken Into Constituent Parts.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Year</th>
+<th style="text-align: center;">Approaches</th>
+<th style="text-align: center;">Mts Std</th>
+<th style="text-align: center;">Masters</th>
+<th style="text-align: center;">Combined</th>
+<th style="text-align: center;">Failing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2016</td>
+<td style="text-align: center;">31%</td>
+<td style="text-align: center;">29%</td>
+<td style="text-align: center;">24%</td>
+<td style="text-align: center;">84%</td>
+<td style="text-align: center;">16%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2017</td>
+<td style="text-align: center;">27%</td>
+<td style="text-align: center;">31%</td>
+<td style="text-align: center;">30%</td>
+<td style="text-align: center;">88%</td>
+<td style="text-align: center;">12%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2018</td>
+<td style="text-align: center;">25%</td>
+<td style="text-align: center;">29%</td>
+<td style="text-align: center;">33%</td>
+<td style="text-align: center;">87%</td>
+<td style="text-align: center;">13%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2020</td>
+<td style="text-align: center;">29%</td>
+<td style="text-align: center;">27%</td>
+<td style="text-align: center;">23%</td>
+<td style="text-align: center;">79%</td>
+<td style="text-align: center;">21%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2021</td>
+<td style="text-align: center;">30%</td>
+<td style="text-align: center;">27%</td>
+<td style="text-align: center;">21%</td>
+<td style="text-align: center;">78%</td>
+<td style="text-align: center;">22%</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2022</td>
+<td style="text-align: center;">31%</td>
+<td style="text-align: center;">31%</td>
+<td style="text-align: center;">18%</td>
+<td style="text-align: center;">80%</td>
+<td style="text-align: center;">20%</td>
+</tr>
+</tbody>
+</table>
+<p>An amazing amount of very useful information is now available to us using just this small data frame.</p>
+<p><br> </p>
+</section>
+
+<section>
+<section id="fooled-by-randomness---an-extended-example" class="title-slide slide level1 center">
+<h1><strong>FOOLED BY RANDOMNESS - AN EXTENDED EXAMPLE</strong></h1>
+<p>When looking at the results in the table above it would be difficult <strong><em>NOT</em></strong> to feel something about several categories, particularly the changes observed in the ‘Masters Standard’ and the ‘Failing’ columns. They seem large; and negative.</p>
+<p>Like everyone else, I want some numerical context so I put the data in the form of bar charts by year:</p>
+<p><br></p>
+<p><img data-src="img/staar-2016-2022-disagg-math-all-ratings-annot.png"></p>
+<p>Fig: Data that is not grouped together taken from 5 TEA “Snapshot” description-only reports and 1 TAPR description-only report</p>
+<p><br> </p>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p>I know from training and long experience that it is dangerous to rely solely on visual inspection of data that is simply displayed and not analyzed.</p>
+</div>
+</div>
+</div>
+<p><br> </p>
+<p>The XmR charts tell us a very different story.</p>
+<p><br></p>
+<p><img data-src="pbc/xmr-2016-2022-math-masters-only.png"></p>
+<p>Fig: Data taken from 5 TEA “Snapshot” description-only reports and 1 TAPR description-only report</p>
+<p><br> </p>
+<p>And, here’s one TEA does not provide us that school boards would likely be keenly interested in – the ‘FAILING’ column: <br> <br></p>
+<p><img data-src="pbc/xmr-2016-2022-math-failing.png"></p>
+<p>Fig: Data taken from 5 TEA “Snapshot” description-only reports and 1 TAPR description-only report</p>
+<p><br> </p>
+<p>The following additional reports (XmR charts) use ungrouped data and includes the necessary information to help us. Again, they cover public STAAR data provided by TEA, along with a brief interpretation of the charts taken as a whole. They provide a baseline (context) for evaluating both past and future performance in these additional categories and levels.</p>
+<p><br> </p>
+<p><img data-src="pbc/xmr-2016-2022-math-meets-only.png"></p>
+<p>Fig: Data taken from 5 TEA “Snapshot” description-only reports and 1 TAPR description-only report</p>
+</section>
+<section id="interpreting-the-charts" class="slide level2">
+<h2>INTERPRETING THE CHARTS</h2>
+<ul>
+<li><p>The measurements do go up and down, but <strong><em>there is no evidence that the movements are more than random variation</em></strong>. The ups and downs are almost certainly due to the many random forces acting on the cause system that produced the results. All display <strong><em>common cause variation</em></strong> because the forces creating the ups and downs are common to all the results we see.</p></li>
+<li><p>In this case, the charts show that all measurements fall between the calculated Upper Limit (UCL) and Lower Limit (LCL), with no statistical trends identified. Accordingly, the processes are <strong><em>stable</em></strong>, with a <strong><em>predictable output capability</em></strong>. Of the many forces influencing the results, no one of them is predominant. If one force (or a small combination) was predominate the chart would reveal it.</p></li>
+<li><p>If the process remains fundamentally the same, <strong><em>the proportion of students in the district taking the STAAR exam in Math that reach the level of ‘Meets Grade Level Standard, Masters Grade Level Standard, or Failed to Reach Approaches Grade Level Standard’ will continue to fluctuate between their respective upper and lower control limits (UCL and LCL). Their averages are the best estimated of performance in the future.</em></strong>.</p></li>
+<li><p>Any expectation of results outside those limits, without a significant change to the system, <strong><em>would not be justified - at all</em></strong>.</p></li>
+<li><p>Any future result, if it falls inside the calculated boundaries <strong><em>does not signify an increase or decrease in the performance of the process.</em></strong> The routine ‘ups’ or ‘downs’ do not mean we are doing better, or worse.</p></li>
+<li><p>Confidence in the interpretation will <strong>increase</strong> as you add more data to the chart. For example, it would be helpful to add years prior to 2016 to see if our interpretation of the data changed.</p></li>
+<li><p>This charts includes all the information this data can reveal. <strong><em>If you need or want more information you have to collect more data</em></strong>.</p></li>
+</ul>
+<p><br></p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong><strong><em>Technical Note For the Statistically Curious:</em></strong></strong></p>
+</div>
+<div class="callout-content">
+<p>The calculated limits are NOT set at 3 standard deviations above and below the average. The various statistical tests you learned in Statistics 101 cannot help you when your attention is focused on the future output of your district, campus, or pedagogy. They were designed to characterize a population as it exists at a single moment in time - how much or how many; without regard to why the population came to be the way that it is. Even the forecasting techniques are inappropriate for the task at hand.</p>
+</div>
+</div>
+</div>
+<p><br> <br></p>
+</section></section>
+<section id="leadership-reaction" class="title-slide slide level1 center scrollable">
+<h1><strong>LEADERSHIP REACTION</strong></h1>
+<p>The content of your reports matter. The appropriate reaction of management (which includes the school board) is <strong><em>completely different</em></strong> if the system or process indicates a <strong><em>stable state</em></strong> (predictable) than when it shows evidence of being in an <strong><em>unstable state</em></strong> (statistically speaking, of course).</p>
+<p>Changing a stable process in reaction to so-called performance indicators (KPIs) that fall within the ‘normal’ range of a predictable process is <strong><em>harmful.</em></strong> It makes things <strong><em>worse</em></strong>; no matter how emotional you may become if you think you see things ‘going in the wrong direction.’</p>
+<p>Reacting to indicators falling outside the identified ‘normal’ range is <strong><em>productive</em></strong>. If the indicator is in the ‘good’ direction efforts to identify the causes and duplicate them are almost always successful. If they fall in the ‘bad’ direction, efforts to identify the causes and remove them are worthwhile.</p>
+<p><strong><em>If your reports are ‘description-only’ you cannot possibly determine the most appropriate action for the circumstances.</em></strong></p>
+<p><br></p>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong><strong><em>Cautionary Note:</em></strong></strong></p>
+</div>
+<div class="callout-content">
+<p>Districts should cease dependence on recommendations for action based on outside observational studies relying solely on correlations deemed “statistically significant”. This so-called “evidence based” research is not based on generally accepted “cause and effect” experimental design. Despite the obligatory disclaimers, calls for action often imply “cause and effect” relationships.<sup>1</sup></p>
+<p>Remember, theories of a flat earth were “evidence based”, as are most stereotypes. The strength and quality of the evidence is more important than whether there is any evidence at all. It is far better to see what works in your district through the use of these methods and your own efforts.</p>
+</div>
+</div>
+</div>
+<p><br> </p>
+<p>Should we do nothing when we think we need a change? <strong><em>ABSOLUTELY NOT!</em></strong> However, <strong>WHAT</strong> we do and <strong>HOW</strong> we do it is very different under each condition. Those who simply want ‘change’, without regard to whether or not the process is in a stable state, will nearly always make things worse. <br> <br></p>
+<aside><ol class="aside-footnotes"><li id="fn5"><p>See for instance https://scholarworks.umt.edu/etd/1387/</p></li></ol></aside></section>
+
+<section>
+<section id="make-a-difference-starting-where-you-are" class="title-slide slide level1 center">
+<h1><strong>MAKE A DIFFERENCE, STARTING WHERE YOU ARE</strong></h1>
+<ul>
+<li><p>We do not have to wait for TEA to begin providing data in the form we need it. We don’t have to wait for TASB to offer training in the appropriate tools and methods to extract the new information we need for improvement.</p></li>
+<li><p>It is ridiculously easy to plot dots in time order on a piece of paper and draw lines between the dots. Sally in fourth grade can do it. It takes very little training to learn how to construct and use an XmR chart.</p></li>
+</ul>
+<p><strong><em>Here’s a screenshot of a run chart made by 4th graders in Leander ISD with newsprint and acrylic paint (and they can explain what it means, too).</em></strong></p>
+
+<img data-src="img/leander-grade-4-run-chart.png" class="r-stretch"><p><br> </p>
+<p>When people in the organization begin ‘plotting the dots’ amazing ideas and insights bubble up from the people closest to the action - where it is most valuable.</p>
+<ul>
+<li><p>You don’t need to wait years to gather high-quality ‘baseline’ data. In the real world data is never pristine. Use what you have now and improve future data collection as you go. You should strive to get as much data as possible but a valid analysis can be done with as few as 6 data points (the ideal is 25 points, or more).</p></li>
+<li><p>You don’t have to have ‘everybody on board’ to begin. Every district, department, function, and classroom generates data every day that can be used to help answer the big, important questions. Those interested in such questions can start now. Here are some examples:</p></li>
+</ul>
+<p><br> </p>
+</section>
+<section id="school-boards" class="slide level2">
+<h2><strong>SCHOOL BOARDS</strong></h2>
+<p>Metrics and goals defined in strategic plans, district improvement plans, TEA scoring targets, safety and other district-level initiatives can and should be assessed and evaluated with the aid of the new information provided by an XmR chart. Even financial information can be analyzed this way.</p>
+</section>
+<section id="superintendents-administrators" class="slide level2">
+<h2><strong>SUPERINTENDENTS &amp; ADMINISTRATORS</strong></h2>
+<p>Legacy programs and efforts to introduce new programs aimed at improvement are all perfect candidates for this simple new chart. Insight into campus-level issues (good and bad) are best analyzed with the new information. Insight gathered this way helps answer questions like, “Is this initiative or program producing the results we want?”</p>
+</section>
+<section id="classrooms" class="slide level2">
+<h2><strong>CLASSROOMS</strong></h2>
+<p>Classroom attendance, MAP scores, disciplinary events, new pedagogues, can be assessed with the aid of the new information. Anything a teacher may be concerned about can quickly and easily be tracked and analyzed.</p>
+</section>
+<section id="functional-areas" class="slide level2">
+<h2><strong>FUNCTIONAL AREAS</strong></h2>
+<p>Facilities managers, bus drivers, custodians can ask and answer questions such as:</p>
+<ul>
+<li><p>Are our initiatives to reduce utility costs working? By how much? At which campuses?</p></li>
+<li><p>Are late-arrivals decreasing? Are disciplinary actions during travel increasing?</p></li>
+<li><p>Can we reduce supply costs without compromising quality? How frequently should restrooms be re-stocked? At which campuses? <br> <br></p></li>
+</ul>
+</section></section>
+<section id="summary" class="title-slide slide level1 center">
+<h1><strong>SUMMARY</strong></h1>
+<p>To go from monitoring a system to improving a system we must move from a ‘snapshot’ point of view to an ‘analysis’ point of view. <strong><em>They are two different jobs and require different theory, tools and methods.</em></strong> That means the data we use for improvement must include the context of time order, an estimate of future performance, and a range of values we can think of as ‘normal’ variation. <br></p>
+<p><img data-src="img/crossed-out-staar-snapshot-by-subj-2022-2023-650-380.png"></p>
+<p>Fig: This “description-only” form of report cannot help us to improve</p>
+<p><br> </p>
+<p><img data-src="img/crossed-out-staar-src-example-2021-2022-640-380.png"></p>
+<p>Fig: This “description-only” form of report cannot help us to improve</p>
+<p><br></p>
+<p>The crucial information for analysis of district output capability (and the prediction of future performance) is contained in the order of occurrence found in the time-period-by-time-period data. <strong><em>The more periods included in the analysis, the stronger the evidence for your inferences from the charts.</em></strong></p>
+<p>Management in all forms is prediction. Therefore, management should <strong><em>use analytic reports</em></strong> instead of <strong><em>‘description-only’</em></strong> reports. Management should focus on improvement of processes for future results, not solely on judgment of past results.</p>
+<div class="quarto-auto-generated-content">
+<p><img src="img/red-cross-640-435.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>Footer text</p>
+</div>
+</div>
+</section>
+
+
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="QUARTO TEST_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="QUARTO TEST_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'multiplex': {"secret":"170925366442664508","id":"65471a3343827fcc","url":"https://reveal-multiplex.glitch.me/"},
+'smaller': true,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

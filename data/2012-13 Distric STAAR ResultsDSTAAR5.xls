@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="Generator" content="SAS Software Version 9.4, see www.sas.com">
+<meta http-equiv="Content-type" content="text/html; charset=iso-8859-1">
+<title>SAS Output</title>
+<style type="text/css">
+<!--
+.batch
+{
+  border: 1px solid #000000;
+  border-collapse: separate;
+  border-spacing: 1px;
+  font-family: 'courier new';
+}
+.bycontentfolder
+{
+  margin-left: 6pt;
+}
+.bylinecontainer
+{
+  width: 100%;
+}
+.contentfolder
+{
+  margin-left: 6pt;
+}
+.contentitem
+{
+  margin-left: 6pt;
+}
+.contents
+{
+}
+.folderaction
+{
+  margin-left: 6pt;
+}
+.graph
+{
+  border: 1px solid #000000;
+  border-collapse: separate;
+  border-spacing: 1px;
+}
+.indexaction
+{
+  margin-left: 6pt;
+}
+.indexitem
+{
+  margin-left: 6pt;
+}
+.list
+{
+  list-style-type: disc;
+}
+.list10
+{
+  list-style-type: square;
+}
+.list2
+{
+  list-style-type: circle;
+}
+.list3
+{
+  list-style-type: square;
+}
+.list4
+{
+  list-style-type: square;
+}
+.list5
+{
+  list-style-type: square;
+}
+.list6
+{
+  list-style-type: square;
+}
+.list7
+{
+  list-style-type: square;
+}
+.list8
+{
+  list-style-type: square;
+}
+.list9
+{
+  list-style-type: square;
+}
+.listitem
+{
+  list-style-type: disc;
+}
+.listitem10
+{
+  list-style-type: square;
+}
+.listitem2
+{
+  list-style-type: circle;
+}
+.listitem3
+{
+  list-style-type: square;
+}
+.listitem4
+{
+  list-style-type: square;
+}
+.listitem5
+{
+  list-style-type: square;
+}
+.listitem6
+{
+  list-style-type: square;
+}
+.listitem7
+{
+  list-style-type: square;
+}
+.listitem8
+{
+  list-style-type: square;
+}
+.listitem9
+{
+  list-style-type: square;
+}
+.output
+{
+  border: 1px solid #000000;
+  border-collapse: separate;
+  border-spacing: 1px;
+}
+.pages
+{
+}
+.pagesitem
+{
+  margin-left: 6pt;
+}
+.systitleandfootercontainer
+{
+  width: 100%;
+}
+.table
+{
+  border: 1px solid #000000;
+  border-collapse: separate;
+  border-spacing: 1px;
+}
+.top_stacked_value
+{
+  padding-bottom: 1px;
+  border: 0;
+}
+.middle_stacked_value
+{
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border: 0;
+}
+.bottom_stacked_value
+{
+  padding-top: 1px;
+  border: 0;
+}
+.titleandnotecontainer
+{
+  width: 100%;
+}
+.l {text-align: left }
+.c {text-align: center }
+.r {text-align: right }
+.d {text-align: right }
+.j {text-align: justify }
+.t {vertical-align: top }
+.m {vertical-align: middle }
+.b {vertical-align: bottom }
+TD, TH {vertical-align: top }
+.stacked_cell{padding: 0 }
+-->
+</style>
+<script language="javascript" type="text/javascript">
+<!-- 
+function startup(){
+
+}
+function shutdown(){
+
+}
+
+//-->
+</script>
+
+</head>
+<body onload="startup()" onunload="shutdown()" class="body">
+
+<script language="javascript" type="text/javascript">
+<!-- 
+var _info = navigator.userAgent
+var _ie = (_info.indexOf("MSIE") > 0
+          && _info.indexOf("Win") > 0
+          && _info.indexOf("Windows 3.1") < 0);
+var _ie64 = _info.indexOf("x64") > 0
+
+//-->
+</script>
+
+<div class="branch">
+<a name="IDX"></a>
+<div>
+<div align="center">
+<table class="table" cellspacing="1" cellpadding="7" rules="all" frame="box" border="1" summary="Procedure Print: Data Set WORK.TMPAEI1">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="l header" scope="col">DISTRICT</th>
+<th class="r header" scope="col">D200A001213R</th>
+<th class="r header" scope="col">D200AC01213R</th>
+<th class="r header" scope="col">D200AM01213R</th>
+<th class="r header" scope="col">D200AR01213R</th>
+<th class="r header" scope="col">D200AS01213R</th>
+<th class="r header" scope="col">D200AW01213R</th>
+<th class="r header" scope="col">D300A001213R</th>
+<th class="r header" scope="col">D300AC01213R</th>
+<th class="r header" scope="col">D300AM01213R</th>
+<th class="r header" scope="col">D300AR01213R</th>
+<th class="r header" scope="col">D300AS01213R</th>
+<th class="r header" scope="col">D300AW01213R</th>
+<th class="r header" scope="col">D400A001213R</th>
+<th class="r header" scope="col">D400AC01213R</th>
+<th class="r header" scope="col">D400AM01213R</th>
+<th class="r header" scope="col">D400AR01213R</th>
+<th class="r header" scope="col">D400AS01213R</th>
+<th class="r header" scope="col">D400AW01213R</th>
+<th class="r header" scope="col">DA00A001213R</th>
+<th class="r header" scope="col">DA00AC01213R</th>
+<th class="r header" scope="col">DA00AM01213R</th>
+<th class="r header" scope="col">DA00AR01213R</th>
+<th class="r header" scope="col">DA00AS01213R</th>
+<th class="r header" scope="col">DA00AW01213R</th>
+<th class="r header" scope="col">DB00A001213R</th>
+<th class="r header" scope="col">DB00AC01213R</th>
+<th class="r header" scope="col">DB00AM01213R</th>
+<th class="r header" scope="col">DB00AR01213R</th>
+<th class="r header" scope="col">DB00AS01213R</th>
+<th class="r header" scope="col">DB00AW01213R</th>
+<th class="r header" scope="col">DE00A001213R</th>
+<th class="r header" scope="col">DE00AC01213R</th>
+<th class="r header" scope="col">DE00AM01213R</th>
+<th class="r header" scope="col">DE00AR01213R</th>
+<th class="r header" scope="col">DE00AS01213R</th>
+<th class="r header" scope="col">DE00AW01213R</th>
+<th class="r header" scope="col">DF00A001213R</th>
+<th class="r header" scope="col">DF00AC01213R</th>
+<th class="r header" scope="col">DF00AM01213R</th>
+<th class="r header" scope="col">DF00AR01213R</th>
+<th class="r header" scope="col">DF00AS01213R</th>
+<th class="r header" scope="col">DF00AW01213R</th>
+<th class="r header" scope="col">DH00A001213R</th>
+<th class="r header" scope="col">DH00AC01213R</th>
+<th class="r header" scope="col">DH00AM01213R</th>
+<th class="r header" scope="col">DH00AR01213R</th>
+<th class="r header" scope="col">DH00AS01213R</th>
+<th class="r header" scope="col">DH00AW01213R</th>
+<th class="r header" scope="col">DI00A001213R</th>
+<th class="r header" scope="col">DI00AC01213R</th>
+<th class="r header" scope="col">DI00AM01213R</th>
+<th class="r header" scope="col">DI00AR01213R</th>
+<th class="r header" scope="col">DI00AS01213R</th>
+<th class="r header" scope="col">DI00AW01213R</th>
+<th class="r header" scope="col">DL00A001213R</th>
+<th class="r header" scope="col">DL00AC01213R</th>
+<th class="r header" scope="col">DL00AM01213R</th>
+<th class="r header" scope="col">DL00AR01213R</th>
+<th class="r header" scope="col">DL00AS01213R</th>
+<th class="r header" scope="col">DL00AW01213R</th>
+<th class="r header" scope="col">DM00A001213R</th>
+<th class="r header" scope="col">DM00AC01213R</th>
+<th class="r header" scope="col">DM00AM01213R</th>
+<th class="r header" scope="col">DM00AR01213R</th>
+<th class="r header" scope="col">DM00AS01213R</th>
+<th class="r header" scope="col">DM00AW01213R</th>
+<th class="r header" scope="col">DR00A001213R</th>
+<th class="r header" scope="col">DR00AC01213R</th>
+<th class="r header" scope="col">DR00AM01213R</th>
+<th class="r header" scope="col">DR00AR01213R</th>
+<th class="r header" scope="col">DR00AS01213R</th>
+<th class="r header" scope="col">DR00AW01213R</th>
+<th class="r header" scope="col">DS00A001213R</th>
+<th class="r header" scope="col">DS00AC01213R</th>
+<th class="r header" scope="col">DS00AM01213R</th>
+<th class="r header" scope="col">DS00AR01213R</th>
+<th class="r header" scope="col">DS00AS01213R</th>
+<th class="r header" scope="col">DS00AW01213R</th>
+<th class="r header" scope="col">DW00A001213R</th>
+<th class="r header" scope="col">DW00AC01213R</th>
+<th class="r header" scope="col">DW00AM01213R</th>
+<th class="r header" scope="col">DW00AR01213R</th>
+<th class="r header" scope="col">DW00AS01213R</th>
+<th class="r header" scope="col">DW00AW01213R</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="l data">&#39;094902</td>
+<td class="r data">48</td>
+<td class="r data">47</td>
+<td class="r data">48</td>
+<td class="r data">53</td>
+<td class="r data">43</td>
+<td class="r data">45</td>
+<td class="r data">57</td>
+<td class="r data">56</td>
+<td class="r data">62</td>
+<td class="r data">56</td>
+<td class="r data">43</td>
+<td class="r data">62</td>
+<td class="r data">43</td>
+<td class="r data">41</td>
+<td class="r data">48</td>
+<td class="r data">47</td>
+<td class="r data">25</td>
+<td class="r data">44</td>
+<td class="r data">42</td>
+<td class="r data">42</td>
+<td class="r data">43</td>
+<td class="r data">48</td>
+<td class="r data">32</td>
+<td class="r data">37</td>
+<td class="r data">34</td>
+<td class="r data">33</td>
+<td class="r data">34</td>
+<td class="r data">42</td>
+<td class="r data">25</td>
+<td class="r data">29</td>
+<td class="r data">30</td>
+<td class="r data">30</td>
+<td class="r data">30</td>
+<td class="r data">35</td>
+<td class="r data">21</td>
+<td class="r data">26</td>
+<td class="r data">44</td>
+<td class="r data">40</td>
+<td class="r data">43</td>
+<td class="r data">53</td>
+<td class="r data">28</td>
+<td class="r data">45</td>
+<td class="r data">36</td>
+<td class="r data">34</td>
+<td class="r data">37</td>
+<td class="r data">43</td>
+<td class="r data">26</td>
+<td class="r data">32</td>
+<td class="r data">36</td>
+<td class="r data">42</td>
+<td class="r data">30</td>
+<td class="r data">43</td>
+<td class="r data">35</td>
+<td class="r data">30</td>
+<td class="r data">9</td>
+<td class="r data">5</td>
+<td class="r data">11</td>
+<td class="r data">8</td>
+<td class="r data">6</td>
+<td class="r data">11</td>
+<td class="r data">40</td>
+<td class="r data">43</td>
+<td class="r data">42</td>
+<td class="r data">44</td>
+<td class="r data">37</td>
+<td class="r data">30</td>
+<td class="r data">16</td>
+<td class="r data">16</td>
+<td class="r data">15</td>
+<td class="r data">22</td>
+<td class="r data">13</td>
+<td class="r data">13</td>
+<td class="r data">20</td>
+<td class="r data">17</td>
+<td class="r data">21</td>
+<td class="r data">25</td>
+<td class="r data">13</td>
+<td class="r data">17</td>
+<td class="r data">47</td>
+<td class="r data">48</td>
+<td class="r data">48</td>
+<td class="r data">53</td>
+<td class="r data">38</td>
+<td class="r data">42</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<br>
+</div>
+</body>
+</html>

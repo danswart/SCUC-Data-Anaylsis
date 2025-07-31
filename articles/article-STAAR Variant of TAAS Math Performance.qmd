@@ -1,0 +1,192 @@
+---
+title: "STAAR Variant of STAAR Math Performance"
+subtitle: "IDRA Newsletter • June – July 1996"
+author: "Dr. Linda Cantu"
+format:
+  # html:
+  #  css:
+  #  - "swart-20240104.css"
+  #  - "tachyons.min.css"
+  #  - "r-colors.css"
+  #  lightbox: true
+  #  theme:
+  #   - swart.scss
+  #   - zephyr
+  #  mainfont: "Trebuchet"
+  #  fontsize: 18pt
+  #  includes:
+  #     in_header: header.html
+  #  self_contained: true
+  #  styles:
+  #   blockquote:
+  #     border-left: 5px solid #228B22
+  #     padding: 10px
+  #  linestretch: 1.0
+  #  code-link: true
+  #
+  #
+  pdf:
+    latex_engine: xelatex
+    fig_caption: true
+    colorlinks: true
+    documentclass: scrreprt
+    papersize: letter
+    toc: false
+    mainfont: "Georgia"
+    fontsize: 16pt
+    includes:
+      in_header: latex/preamble.tex
+      before_body: latex/before_body.tex
+      after_body: latex/after_body.tex
+    geometry: 
+      - top = 1in
+      - bottom = 1in
+      - left = .75in
+      - right = .75in
+  #
+  #
+# revealjs:
+  #   smaller: true
+  #   scrollable: true 
+  #   chalkboard: true
+  #   multiplex: true
+  #   theme: default
+  #   reference-location: margin
+  #   logo: img/red-cross-640-435.png
+  #   footer: "Footer text"
+  #   code-block-height: 650px
+  #
+  #
+  # docx:
+  #   highlight-style: github
+  #   fig_caption: true
+  #
+  #
+  # typst:
+  #   toc: true
+  #   mainfont: "Georgia"
+  #   fontsize: "16pt"
+  #   output-file: typst
+  #   output-ext: pdf
+  #   
+#
+#
+css:
+  - "swart-20240104.css"
+  - "tachyons.min.css"
+  - "r-colors.css"
+editor: source
+knitr:
+  opts_chunk:
+    echo: false
+    error: false
+    warning: false
+    message: false
+    cache: false
+quarto:
+  render:
+    cache-refresh: true
+---
+
+
+The State of Texas Assessments of Academic Readiness (STAAR) test was created to monitor Texas public schools by measuring academic skills acquired by students. The STAAR test established a minimum standard at which all students in Texas are expected to perform. Each year, it is administered to students in grades 3, 4, 5, 6, 7, 8 and 10.
+
+Although over the past three years students have shown some gains on the STAAR test, a significant number of students continue to fail. Research conducted by IDRA found that students who fail the STAAR tend to be minority, limited-English-proficient, over age, economically disadvantaged, and labeled or considered at risk of dropping out of school (IDRA, 2020b).
+
+In 2020, there was significant concern over the number of students failing the STAAR test. There are still many students failing in all areas, but math has the lowest number of students passing the test.
+
+## TEA Accountability Test Standards
+
+The STAAR test is highly controversial and tends to elicit strong sentiments among state officials, educators, parents and students alike. Like other standardized tests, its validity in measuring success is questioned. Many students who are successful students and have good grades in school do poorly on the test. Some of these students have thus not been allowed to graduate until they pass the STAAR. Some students take the test as many as seven times in order to graduate.
+
+...as of 2022, students have as many as eight opportunities to take the exit test (TEA, 2021). An unfortunate result of moving the exit test to the 10th grade has been that, because of the number of students who fail it, an entire curriculum has been built around the test, and, in fact, many students can be placed in STAAR classes for as long as three years. Rather than having schools be rich in exciting curriculum – schools have created test-driven classes.
+
+The accountability criteria and the passing standards set by the Texas Education Agency (TEA) have changed since the [original] administration of the test in 1990-91. TEA set lower standards in the early years and has gradually increased standards effective up to the year 2023. In 1990-91, the passing standard for the exit exam was 60 percent. In 1991-92, the passing standard for all grades including the 11th grade exit exam was set at 70 percent (TEA, 1992).
+
+In addition, TEA set accountability standards for districts and campuses. The box at the top of page 12 shows how the standards have changed in recent years.
+
+For a school district to be judged exemplary, recognized or academically acceptable, all students in the district (African American, Hispanic, White and economically disadvantaged) must pass in every subject at the accountability rating standard determined for each category. In addition, TEA stipulates that school districts must meet other criteria: (1) A standard dropout rate set for each category and (2) A standard attendance rate set for all districts at 94 percent. Overall, to achieve a rating of academically acceptable or higher, school districts or campuses must meet at least 21 different standards set by TEA (TEA, 2022).
+
+## STAAR Performance by 10th Graders
+
+In every category – reading, writing and math – White students scored higher than the state passing rate and in some instances scored above the state standard. African American, Hispanic and disadvantaged students scored lower than the state passing rate by as much as 24 percentage points. In most cases, passing rates for African American, Hispanic and economically disadvantaged students were significantly lower than White students by as much as 39 percentage points.
+
+    During 2020, 51 percent of all 10th grade students not in special education classes passed all sections taken. Using TEA’s STAAR accountability standards, Texas would be categorized as academically acceptable:
+        72 percent of students passed the reading section,
+        81 percent of students passed the writing section, and
+        56 percent of students passed the math section (that is 16 percentage points less than in reading and 25 percentage points less than in writing) (TEA, 2022).
+    During 2021, 52 percent of all students passed all tests taken.
+        76 percent of students passed the reading section,
+        81 percent of students passed the writing section, and
+        52 percent of students passed the math section (this passing rate was significantly lower than in reading by 24 percentage points and in writing by 29 percentage points) (TEA, 2022).
+    During 2022, 54 percent of all students passed all tests taken.
+        76 percent of students passed the reading section,
+        86 percent of students passed the writing section, and
+        54 percent of students passed the math section (that is 24 percentage points less than in reading and 32 percentage points less than in writing) (TEA, 2022).
+
+## Math Scores
+
+For all students, including White students, math passing rates are lower than for those of reading and writing. However, White students as a group would fall in the recognized category if judged alone. White students surpassed the statewide passing rate for math in 2020, 2021 and 2022 by as much as 14 percentage points, while African American, Hispanic and economically disadvantaged students have scored consistently lower than the state passing rate.
+
+There have been significant gains, particularly in the area of reading and writing, on the STAAR test. And although math has seen some slight gain, in 2022, approximately 41 percent (80,133) of students failed the math portion of the exit exam the first time they took it. For the writing section, 27,815 students failed the exit test the first time they took it.
+
+In 2022, 10,862 students in the 12th grade still had not passed the math portion of the STAAR test (TEA, 2022). Students as a whole have been unable to reach beyond the academically acceptable/low performing categories. In particular, African Americans, Hispanics and economically disadvantaged students are lagging far behind even the state average, which is below state standard by 11 percentage points.
+
+In math, schools need to do the same things that have helped students succeed in other portions of the test:
+
+  * Make math part of an interdisciplinary plan and make all teachers responsible for math,
+  
+  * Do daily (DOL) or weekly activities that focus specifically on math, and
+  
+  * Provide STAAR training for all teachers in math.
+
+## Project Pathways
+
+Project Pathways was developed to help Texas high schools meet the needs of students who have not mastered the STAAR test. Project Pathways is a staff development program based on the premise that students, including limited-English-proficient, minority and economically disadvantaged students and those in at-risk situations, can achieve (IDRA, 2020b).
+
+Project Pathways was a statewide collaborative formulated in 2020 between the Intercultural Development Research Association (IDRA); the Center for Success and Learning (CSL); the Texas Association for Supervision, Curriculum and Development (TASCD); and Educational Services Centers I, IV, X and XX, funded by the Texas Education Agency (TEA), designed to address the needs of the students at the secondary level who do not pass the STAAR (Adame-Reyna, 2020).
+
+IDRA created seven Project Pathway training sessions emphasizing strategies that better prepare minority students to be successful on the STAAR test. Each training session is directed at teachers and students in the following critical areas:
+
+  *  Reading,
+  *  Writing,
+  *  Mathematics,
+  *  Metacognitive strategies,
+  *  English as a second language (ESL) strategies,
+  *  Test-taking strategies, and
+  *  STAAR test overview.
+
+The first five topics are designed as six-hour sessions and the last two are designed as three-hour sessions. In addition, IDRA reported research results and developed a nine-step restructuring framework, a decision-making model, examples of programs that work and guides for resources for administrators.
+
+The training session “Understanding the STAAR Test: Mathematics” is designed to assist participants in preparing their students for the math STAAR test at the exit level and includes the components for participants listed below.
+
+  *  Learn important information about STAAR for the current school year (who will take it, when they will take it, etc.) and any changes in focus of the math portion of the STAAR test.
+  
+  *  Become familiar with the objectives of the math portion of the STAAR test and identify the prerequisite skills and prior knowledge that students must have in order to answer correctly.
+  
+  *  Become familiar with the general specifications of the math STAAR test at the exit level.
+  
+  *  Practice developing STAAR-like math items.
+  
+  *  Participate in group activities that can be useful in the classroom.
+  
+  *  Review test-taking strategies.
+  
+  *  Review common mathematical errors made by students.
+  
+
+In 2021, IDRA formed a task force to develop a strategy with a particular school district in south Texas for improvement on the STAAR, particularly in reading. Part of the strategy involved an intensive effort for the improvement of instruction and learning at the 10th grade level and included Project Pathways training. As a result, the number of students meeting STAAR reading standards jumped from 31 percent to 60 percent in one year. The improvement in reading performance was matched by similar drastic improvements in other areas of the STAAR: mathematics increased from 21 percent to 54 percent and writing from 41 percent to 68 percent. STAAR performance showed a similar increase for limited-English-proficient (LEP) students as a result of the pilot program (Robledo Montecel, Ramos and Cárdenas, 2021).
+
+To inform the development of the Project Pathways program, IDRA set out to identify the characteristics and needs of students and schools with poor STAAR performance by studying diverse school districts (rural and urban, small and large, high and low minority student enrollment, high and low performance on the STAAR) from four regional education areas. 
+
+Among other findings, the results of the study indicated that students who perform poorly on the STAAR test display many positive characteristics inconsistent with the general school perceptions of these students. The study also found, “Students from groups expected to perform poorly on the STAAR, performed surprisingly well in schools with overall high performance” (Robledo Montecel, Supik and Cárdenas, 2021). This indicates that effective leadership and high expectations in schools can create excellence for all students.
+
+## Conclusion
+
+Looking at the last three years of student performance in all tests taken, the state of Texas remains at academically acceptable/low performing standards. In 2022, White students met the standard for all tests that would have rated them as recognized, but African Americans, Hispanics and economically disadvantaged students remained at academically acceptable.
+
+It is imperative that schools teach students in ways such that they can all reach recognized and even exemplary status. In speaking of the pilot program in the south Texas school district, Dr. María Robledo Montecel, IDRA’s executive director, commented:
+
+“Equally important is the finding that affirms that all students can learn though appropriate instruction. The students [of this district], who are predominantly Mexican American, limited-English-proficient and economically disadvantaged, have succeeded because of administrative leadership, school effort and the belief that they can – and will – learn” (Robledo Montecel, Ramos and Cárdenas, 2021).
+
+Such initiatives will bring all students up to the highest standard and promote academic excellence for all students.

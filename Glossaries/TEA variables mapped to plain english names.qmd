@@ -1,0 +1,77 @@
+---
+title: "Mapping Variables to Plain English Names"
+author: "Dan Swart"
+format: html
+---
+
+If you have a DataFrame in R containing cryptic variable names and their plain English equivalents, and an Excel sheet with columns named after these cryptic variable names, you can automate the process of replacing the cryptic names with the plain English names directly within R. This approach doesn't require you to manually adjust the Excel file before importing it into R. Here's how you can achieve this:
+
+
+Let's assume you have an Excel file named data.xlsx and a mapping DataFrame named variable_mapping with two columns: CrypticName and EnglishName.
+
+First, read your Excel file into R:
+
+```{r}
+library(readxl)
+
+data <- read_excel("path/to/your/data.xlsx")
+
+```
+
+Assuming variable_mapping is already in your environment and structured as described. If not, here's how you could create it:
+
+```{r}
+variable_mapping <- data.frame(
+  CrypticName = c("Cryptic_Var1", "Cryptic_Var2"), # example cryptic names
+  EnglishName = c("Plain English Description 1", "Plain English Description 2") # corresponding plain English descriptions
+)
+
+```
+
+Now, iterate through the column names of your data frame, match each with the CrypticName in the variable_mapping DataFrame, and replace it with the corresponding EnglishName.
+
+
+```{r}
+library(dplyr)
+
+# Replace column names
+data <- data %>%
+  rename_with(function(x) variable_mapping$EnglishName[match(x, variable_mapping$CrypticName)])
+
+```
+
+Explanation:
+
+    rename_with() is a function from dplyr that renames columns based on a function you provide.
+    
+    The anonymous function (function(x)) takes the current column names of your data (x) and matches them with the CrypticName column in variable_mapping.
+    
+    match(x, variable_mapping$CrypticName) finds the position of each column name in variable_mapping$CrypticName.
+    
+    variable_mapping$EnglishName[...] uses these positions to get the corresponding English names.
+    
+    Finally, the columns are renamed to these English names.
+
+
+
+After renaming the columns, data will have the cryptic variable names replaced with the English descriptions. You can then proceed with your analysis using this updated DataFrame.
+
+
+Notes
+
+    Ensure the CrypticName column in your variable_mapping DataFrame exactly matches the column names in your Excel data. This includes case sensitivity and any underscores/spaces.
+    
+    If there are any cryptic names in your Excel data that do not have a corresponding English name in the variable_mapping, those column names will not be changed.
+    
+    If you're dealing with Excel files that have multiple sheets or special formatting, you may need to adjust the read_excel() call with additional arguments like sheet.
+
+
+
+
+
+
+
+
+
+
+

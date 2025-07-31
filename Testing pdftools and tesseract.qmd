@@ -1,0 +1,78 @@
+---
+title: "Testing pdftools and tesseract"
+format: html
+---
+
+## From YT tutorial at
+https://www.youtube.com/watch?v=2Mf3g7vg32M
+
+How to analyze PDF documents in R
+Data Centric Inc.
+3.46K subscribers
+
+
+```{r}
+library(pdftools)
+library(tesseract)
+
+# Capture the metadata for the file
+info <- pdf_info(pdf = "data/2018-PBMAS Data Dictionary.pdf")
+
+# Capture the text
+text <- pdf_text(pdf = "data/2018-PBMAS Data Dictionary.pdf")
+
+# Examine the structure of each page
+pdf_data(pdf = "data/2018-PBMAS Data Dictionary.pdf") 
+
+# Display the fonts
+pdf_fonts(pdf = "data/2018-PBMAS Data Dictionary.pdf")
+
+# Display the dimensions of each page
+pdf_pagesize(pdf = "data/2018-PBMAS Data Dictionary.pdf")
+
+
+```
+
+## From YT tutorial at:
+https://www.youtube.com/watch?v=bJH-S2iaxNo&list=PL0Ti_Sjnzz6OBDme69BCi1heFkMwl-4Dh&index=13
+
+How to extract data tables from PDF in r Tutorial
+Data Centric Inc.
+3.46K subscribers
+
+
+```{r}
+library(pdftools)
+library(tidyverse)
+library(ggplot2)
+
+url <- c("data/2018-PBMAS Data Dictionary.pdf")
+raw_text <- purrr::map(url, pdf_text)
+
+# Function to scrape data and clean
+clean_table1 <- function(raw) {
+  
+  # split the single pages
+  raw <- purrr::map(raw, ~str_split(.x, "\\n") %>% unlist())
+  # concatenate the split pages
+  raw <- reduce(raw, c)
+  
+  # specify the start and the end of the table data
+  # find the most unique term/phrase in the table to establish the start and end
+  table_start <- stringr::str_which(tolower(raw), "alcohol use pattern")
+  table_end <- stringr::str_which(tolower(raw), "never used")
+  table_end <- table_end[min(which(table_end > table_start))]
+  
+  
+  
+  
+  
+}
+
+
+
+
+
+
+```
+

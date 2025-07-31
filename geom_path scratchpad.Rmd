@@ -1,0 +1,262 @@
+---
+title: "Analyzing STAAR Data - The 'TASB Two-Step'"
+author: "Dan Swart"
+date: "`r Sys.Date()`"
+header-includes: 
+ \usepackage{geometry}
+ \geometry{top=1.00in,left=1.00in,bottom=1.00in,right=1.00in}
+output:
+  bookdown::html_document2:
+    css: [swart-20240104.css, tachyons.min.css, r-colors.css]
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    fig_caption: true
+    latex_engine_opts: -shell-escape
+    fontsize: 18pt
+knitr:
+  options:
+    echo: FALSE
+    error: FALSE
+    warning: FALSE
+    message: FALSE
+---
+
+
+
+
+```{r options, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+library(knitr)
+opts_chunk$set(echo = FALSE, error = FALSE, warning = FALSE, messages = FALSE, cache = TRUE)
+
+```
+
+```{r source file of basic plots}
+source("STAAR Scores 2016-2022 ggplot.R")
+
+```
+
+```{r load-libraries, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+
+library(knitr)
+opts_chunk$set(echo = FALSE, error = FALSE, warning = FALSE, messages = FALSE, cache = TRUE)
+
+# load libraries
+
+library(readxl)  # read_excel
+library(writexl) # write_xlsx
+library(ggplot2) # ggplot aes geom_col position_dodge2 labs scale_color_manual scale_y_continuous theme element_blank element_text coord_cartesian ggtitle geom_hline geom_line
+library(tibble)  # %>% glimpse
+library(tidyr)  # %>% pivot_wider pivot_longer
+library(readr)  # No used functions found
+library(purrr)  # %>%
+library(dplyr)  # %>% filter mutate glimpse group_by summarise bind_rows arrange
+library(stringr)  # %>%
+library(forcats)  # %>%
+library(lubridate)  # No used functions found
+library(janitor)  # %>% clean_names
+library(scales) # percent_format
+library(ggtext)  # geom_richtext
+library(paletteer)  # scale_fill_paletteer_d
+library(viridis)  # No used functions found
+library(RColorBrewer) # No used functions found
+library(wesanderson) # No used functions found
+library(dutchmasters) # No used functions found
+library(gghighlight)
+library(gridExtra)
+
+
+```
+
+```{r data-wrangling-if-needed}
+# read in Excel file pre-set for pivoting longer
+# df <-
+#   read_excel(
+#     "staar-wide-disagg.xlsx",
+#     col_types = c(
+#       "numeric",
+#       "text",
+#       "numeric",
+#       "numeric",
+#       "numeric",
+#       "numeric",
+#       "numeric",
+#       "numeric",
+#       "numeric"
+#     )
+#   )
+# 
+# 
+# # Pivot the data into long format
+# staar_disagg_wide_to_long <- df %>%
+#   pivot_longer(cols = c(3:9),
+#                names_to = "rating",
+#                values_to = "value")
+# 
+
+```
+
+\Large
+
+
+
+```{r six-trends, fig.width = 7, fig.height = 4, echo = FALSE, fig.cap = "Six Random 'Trends'!"}
+
+# Create the tibble
+
+six_trends <- tibble(
+  trend = rep(c("Upward Trend (?)", "Downturn (?)", "Rebound (?)", "Setback (?)", "Turnaround (?)", "Downward Trend (?)"), each = 3),
+  y = c(0,1,2,0,2,1,1,0,2,1,2,0,2,0,1,2,1,0),
+  x = rep(c(0, 1, 2), 6)
+)
+
+# Define a custom color palette with 6 distinct colors
+custom_colors <- c("red", "blue", "darkgreen", "purple", "darkorange", "black")
+
+
+# Create the line plot with facets using the custom color palette
+six_trends_facet_plot <- six_trends %>%
+  ggplot(aes(x = x, y = y)) +
+  geom_path(aes(group = trend, color = trend), linewidth = 2) +
+  geom_point(aes(x = x, y = y, group = interaction(trend, y), color = trend), size = 4) +
+  facet_wrap(~ trend) +
+  theme_minimal(base_size = 16) +
+  scale_x_continuous(breaks = c(0, 1, 2)) +
+  scale_y_continuous(breaks = c(0, 1, 2)) +
+  scale_color_manual(values = custom_colors) +
+  labs(x = NULL, y = NULL) +   
+  theme(legend.position = "",
+        strip.text = element_text(color = custom_colors, face = "bold"),  # Set facet strip text color
+        # strip.text = element_text(color = "black", face = "bold"),
+        axis.title.x = element_blank(),  
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(), 
+        axis.text.y = element_blank(),  
+        axis.ticks = element_blank(),  
+        panel.grid.major = element_blank(),  
+        panel.grid.minor = element_blank(),
+        panel.spacing = unit(2.0, "lines")  
+        )  
+
+# View the plot
+print(six_trends_facet_plot)
+
+
+
+```
+
+
+```{r staar-2016-2022-by-subject-approaches2, fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Smoke a Head!"}
+```
+
+
+```{r staar-2016-2022-by-subject-approaches3, fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Chew the Root!"}
+
+# view the plot
+staar_2016_2022_by_subject_approaches
+```
+
+A previous plot shows the relationship between x and y variables Fig:   \@ref(fig:staar-2016-2022-by-subject-approaches1).
+
+
+A previous plot shows the relationship between x and y variables Fig:   \@ref(fig:staar-2016-2022-by-subject-approaches2).
+
+
+A previous plot shows the relationship between x and y variables Fig:   \@ref(fig:staar-2016-2022-by-subject-approaches3).
+
+
+
+
+
+If we try to look at the data over the last 6 years we still have the problem of the 'TASB Two-Step'!
+
+
+This view of the data aggregates more than one rating level.  It combines the 'At Approaches' AND the 'At Meets' AND the 'At Masters' rating levels all into one combined total.
+
+
+
+
+
+
+\includegraphics{tasb-2-step-step-1-approaches.pdf}
+<img src="tasb-2-step-step-1-approaches.png">
+
+As a board, we should focus first on the combined results of all subjects tested.  This, purportedly, is the performance of the district taken as a whole:
+
+
+
+```{r approaches-all-subjects, fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Everything All Grouped Together!"}
+# Use gghighlight to highlight the first grouping
+
+staar_2016_2022_by_subject_approaches + 
+  gghighlight(subject == unique(subject)[1], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
+```
+
+A previous plot shows the relationship between x and y variables Fig:   \@ref(fig:approaches-all-subjects).
+
+```{r fig.width = 7.5, fig.height = 6,echo = FALSE, echo = FALSE, fig.cap = "Everything All Grouped Together!"}
+# Use gghighlight to highlight the 2nd grouping
+
+staar_2016_2022_by_subject_approaches + gghighlight(subject == unique(subject)[2], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
+```
+
+
+The a previous plot shows the relationship between x and y variables \@ref(fig:approaches-all-subjects).
+
+
+```{r fig.width = 7.5, fig.height = 6,echo = FALSE, echo = FALSE, fig.cap = "Everything All Grouped Together!"}
+# Use gghighlight to highlight the 3rd grouping
+
+staar_2016_2022_by_subject_approaches + gghighlight(subject == unique(subject)[3], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
+```
+
+
+A previous plot shows the relationship between x and y variables \@ref(fig:approaches-all-subjects).
+
+
+```{r fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Everything All Grouped Together!"}
+# Use gghighlight to highlight the fourth grouping
+
+staar_2016_2022_by_subject_approaches + gghighlight(subject == unique(subject)[4], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
+```
+
+```{r fig.width = 7.5, fig.height = 6,echo = FALSE, fig.cap = "Everything All Grouped Together!" }
+# Use gghighlight to highlight the fifth grouping
+
+staar_2016_2022_by_subject_approaches + gghighlight(subject == unique(subject)[5], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
+```
+
+
+
+```{r fig.width = 7.5, fig.height = 6,echo = FALSE,}
+# Use gghighlight to highlight the sixth grouping
+
+staar_2016_2022_by_subject_approaches + 
+  gghighlight(subject == unique(subject)[6], unhighlighted_params = list(fill = "grey", keep_scales = TRUE))
+```
+
+
+The next rating category also contains more than one rating level.  It combines the 'At Meets' AND the 'At Masters' into one combined total.
+
+
+
+\includegraphics{tasb-2-step-step-2-meets.pdf}
+<img src="tasb-2-step-step-2-meets.png">
+
+
+This rating category is the exception; it contains only one rating level.  It shows ONLY the 'At Masters' level totals.
+
+
+
+\includegraphics{tasb-2-step-step-3-masters.pdf}
+<img src="tasb-2-step-step-3-masters.png">
+
+
+
+
+
+
+
+
+
+
+

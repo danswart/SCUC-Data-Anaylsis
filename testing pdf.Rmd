@@ -1,0 +1,149 @@
+---
+title: "testing pdf"
+author: "DS"
+date: "`r Sys.Date()`"
+output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    fig_caption: true
+    documentclass: book
+    classoption: 16pt
+    includes:
+      in_header: dsheader.tex
+    colorlinks: true
+    fontfamily: palatino
+  bookdown::html_document2:
+    css:
+    - "swart-20240104.css"
+    - "tachyons.min.css"
+    - "r-colors.css"
+    fontsize: 18pt
+    lightbox: true
+    mainfont: "Trebuchet"
+    styles:
+    blockquote:
+      border-left: 5px solid #228B22
+      padding: 10px
+    includes:
+      in_header: header.html
+    self_contained: true
+    linestretch: 1.0
+  bookdown::word_document2:
+    fig_caption: true
+    keep_md: true
+  officedown::rdocx_document:
+header-includes:
+- \usepackage{geometry}
+- \geometry{top=1.00in,left=1.00in,bottom=1.00in,right=1.00in}
+- \setlength\parindent{0.25in}
+- \usepackage{xcolor}
+- \usepackage{tcolorbox}
+- \usepackage{ragged2e}
+- \usepackage{hyperref}
+- \usepackage{float}
+- \hypersetup{colorlinks=true, linkcolor=MidnightBlue, urlcolor=BlueViolet, citecolor=BrickRed}
+- \urlstyle{same}
+- \graphicspath{{pbc}{img}}
+- \usepackage{caption}
+- \captionsetup[figure]{font=Large}
+- \captionsetup{font=Large}
+- \usepackage{longtable}
+linestretch: 1
+fontsize: 18pt
+knitr:
+  opts_chunk:
+    echo: false
+    error: false
+    warning: false
+    message: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r options, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+
+library(knitr)
+
+opts_chunk$set(echo = FALSE, error = FALSE, warning = FALSE, messages = FALSE, cache = TRUE)
+
+
+```
+
+
+```{r load-libraries, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+
+library(knitr)
+
+opts_chunk$set(echo = FALSE, error = FALSE, warning = FALSE, messages = FALSE, cache = TRUE)
+
+# load libraries
+
+
+library(readxl)
+library(writexl) 
+library(ggplot2) 
+library(tibble) 
+library(tidyr) 
+library(readr) 
+library(purrr) 
+library(dplyr) 
+library(stringr) 
+library(forcats) 
+library(lubridate) 
+library(janitor) 
+library(scales) 
+library(ggtext) 
+library(paletteer) 
+library(viridis) 
+library(RColorBrewer)
+library(wesanderson) 
+library(dutchmasters) 
+library(gghighlight)
+library(monochromeR)
+library(ggforce)
+library(kableExtra)
+
+
+```
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+
+cat('
+\\begin{figure}[ht]  
+  \\centering
+  \\includegraphics[width = 1.0\\textwidth, height = 3.0in]{pbc/xmr-2016-2022-math-approaches-combo.png}
+  \\caption{Data taken from 5 TEA "Snapshot" description-only reports and 1 TAPER description-only report}
+\\end{figure}
+
+\\medskip
+
+')
+
+
+```
+
+
+
+```{r, echo=FALSE, eval=knitr::is_latex_output(), results='asis'}
+
+# PDF code (LaTeX)
+
+cat('
+\\begin{figure}[ht]
+  \\centering
+    \\includegraphics[width=1.0\\textwidth, height=3.0in]{png_Teachers/Teachers\\ -\\ African\\ American\\  \\(percent\\),_for\\ Grades\\ -\\ All,\\ for\\ the\\ Years\\ Ended\\ 1995\\  -\\  2022.png}
+  \\caption{Teachers - African American \\(rate\\), for Grades - All, for the Years Ended 1995 - 2022}
+\\end{figure}
+
+')
+
+```
+
+
+<!-- ![](png_Teachers/Teachers_-_African_American_(percent)_,_for_Grades_-_all,_for_the_Years_Ended_1995__-__2022.png) -->

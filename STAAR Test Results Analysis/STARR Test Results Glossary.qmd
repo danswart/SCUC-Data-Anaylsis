@@ -1,0 +1,128 @@
+---
+title: "STAAR Test Results Glossary Tables"
+author: "Dan Swart"
+format:
+  # html:
+  #  css:
+  #  - "swart-20240104.css"
+  #  - "tachyons.min.css"
+  #  - "r-colors.css"
+  #  lightbox: true
+  #  theme:
+  #   - swart.scss
+  #   - zephyr
+  #  mainfont: "Trebuchet"
+  #  fontsize: 18pt
+  #  includes:
+  #     in_header: header.html
+  #  self_contained: true
+  #  styles:
+  #   blockquote:
+  #     border-left: 5px solid #228B22
+  #     padding: 10px
+  #  linestretch: 1.0
+  #  code-link: true
+  #
+  #
+  pdf:
+    latex_engine: xelatex
+    fig_caption: true
+    colorlinks: true
+    documentclass: scrreprt
+    papersize: letter
+    toc: false
+    mainfont: "Georgia"
+    fontsize: 16pt
+    includes:
+      in_header: latex/preamble.tex
+      before_body: latex/before_body.tex
+      after_body: latex/after_body.tex
+    geometry: 
+      - top = 1in
+      - bottom = 1in
+      - left = .75in
+      - right = .75in
+  #
+  #
+# revealjs:
+  #   smaller: true
+  #   scrollable: true 
+  #   chalkboard: true
+  #   multiplex: true
+  #   theme: default
+  #   reference-location: margin
+  #   logo: img/red-cross-640-435.png
+  #   footer: "Footer text"
+  #   code-block-height: 650px
+  #
+  #
+  # docx:
+  #   highlight-style: github
+  #   fig_caption: true
+  #
+  #
+  # typst:
+  #   toc: true
+  #   mainfont: "Georgia"
+  #   fontsize: "16pt"
+  #   output-file: typst
+  #   output-ext: pdf
+  #   
+#
+#
+css:
+  - "swart-20240104.css"
+  - "tachyons.min.css"
+  - "r-colors.css"
+editor: source
+knitr:
+  opts_chunk:
+    echo: false
+    error: false
+    warning: false
+    message: false
+    cache: false
+quarto:
+  render:
+    cache-refresh: true
+---
+
+
+
+
+```{r}
+library(rvest)
+library(tidyverse)
+library(gt)
+library(gtExtras)
+
+
+url <- "https://www.pfisd.net/Page/1103"
+
+
+## Import table from the url
+student_perform_criteria <- read_html(url) %>%
+  html_nodes(xpath = '//*[(@id = "sw-content-layout1")] | //*[contains(concat( " ", @class, " " ), concat( " ", "last-app", " " ))]') %>%
+  html_table()
+
+## Convert the list to a dataframe for gt()
+student_perform_df <- as.data.frame(student_perform_criteria[[1]])
+
+## Convert the dataframe to a gt object
+gt_table <- student_perform_df %>%
+  gt() %>%
+  tab_spanner(
+    label = "The STAAR Test Criteria",
+    columns = starts_with("X")
+  ) %>%
+ # Adjust the width of the text within table cells
+  text_transform(
+    locations = cells_body(),
+    fn = function(x) text(x, width = 50)
+  )
+
+
+gt_table
+
+```
+

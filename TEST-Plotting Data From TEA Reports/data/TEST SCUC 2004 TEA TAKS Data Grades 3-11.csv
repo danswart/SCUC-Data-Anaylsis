@@ -1,0 +1,386 @@
+﻿tea_id,year,grade,subject,category,level_achieved,value
+DB003QA04R,2004,3,All, African American,Met Std,95
+DA003QA04R,2004,3,All, All,Met Std,91
+DP003QA04R,2004,3,All, Asian/Pacific Islander,Met Std,
+DE003QA04R,2004,3,All, Economically Disadvantaged,Met Std,81
+DF003QA04R,2004,3,All, Female,Met Std,89
+DH003QA04R,2004,3,All, Hispanic,Met Std,86
+DL003QA04R,2004,3,All, LEP,Met Std,71
+DM003QA04R,2004,3,All, Male,Met Std,92
+DI003QA04R,2004,3,All, Native American,Met Std,
+DS003QA04R,2004,3,All, Special Education,Met Std,80
+DW003QA04R,2004,3,All, White,Met Std,91
+DB003QM04R,2004,3,Mathematics, African American,Met Std,98
+DA003QM04R,2004,3,Mathematics, All,Met Std,94
+DP003QM04R,2004,3,Mathematics, Asian/Pacific Islander,Met Std,
+DE003QM04R,2004,3,Mathematics, Economically Disadvantaged,Met Std,85
+DF003QM04R,2004,3,Mathematics, Female,Met Std,93
+DH003QM04R,2004,3,Mathematics, Hispanic,Met Std,93
+DL003QM04R,2004,3,Mathematics, LEP,Met Std,77
+DM003QM04R,2004,3,Mathematics, Male,Met Std,96
+DI003QM04R,2004,3,Mathematics, Native American,Met Std,
+DS003QM04R,2004,3,Mathematics, Special Education,Met Std,82
+DW003QM04R,2004,3,Mathematics, White,Met Std,94
+DB003QR04R,2004,3,Reading, African American,Met Std,98
+DA003QR04R,2004,3,Reading, All,Met Std,94
+DP003QR04R,2004,3,Reading, Asian/Pacific Islander,Met Std,
+DE003QR04R,2004,3,Reading, Economically Disadvantaged,Met Std,91
+DF003QR04R,2004,3,Reading, Female,Met Std,95
+DH003QR04R,2004,3,Reading, Hispanic,Met Std,91
+DL003QR04R,2004,3,Reading, LEP,Met Std,86
+DM003QR04R,2004,3,Reading, Male,Met Std,93
+DI003QR04R,2004,3,Reading, Native American,Met Std,
+DS003QR04R,2004,3,Reading, Special Education,Met Std,93
+DW003QR04R,2004,3,Reading, White,Met Std,95
+DA004QA04R,2004,4,All,All,Met Std,76
+DB004QA04R,2004,4,All,African American,Met Std,74
+DE004QA04R,2004,4,All,Economically Disadvantaged,Met Std,62
+DF004QA04R,2004,4,All,Female,Met Std,79
+DH004QA04R,2004,4,All,Hispanic,Met Std,64
+DI004QA04R,2004,4,All,Native American,Met Std,
+DL004QA04R,2004,4,All,LEP,Met Std,45
+DM004QA04R,2004,4,All,Male,Met Std,74
+DP004QA04R,2004,4,All,Asian/Pacific Islander,Met Std,
+DS004QA04R,2004,4,All,Special Education,Met Std,59
+DW004QA04R,2004,4,All,White,Met Std,81
+DA004QM04R,2004,4,Mathematics,All,Met Std,87
+DB004QM04R,2004,4,Mathematics,African American,Met Std,87
+DP004QM04R,2004,4,Mathematics,Asian/Pacific Islander,Met Std,
+DM004QM04R,2004,4,Mathematics,Male,Met Std,89
+DE004QM04R,2004,4,Mathematics,Economically Disadvantaged,Met Std,77
+DL004QM04R,2004,4,Mathematics,LEP,Met Std,45
+DW004QM04R,2004,4,Mathematics,White,Met Std,91
+DS004QM04R,2004,4,Mathematics,Special Education,Met Std,83
+DF004QM04R,2004,4,Mathematics,Female,Met Std,85
+DH004QM04R,2004,4,Mathematics,Hispanic,Met Std,77
+DI004QM04R,2004,4,Mathematics,Native American,Met Std,
+DA004QR04R,2004,4,Reading,All,Met Std,83
+DB004QR04R,2004,4,Reading,African American,Met Std,75
+DE004QR04R,2004,4,Reading,Economically Disadvantaged,Met Std,72
+DF004QR04R,2004,4,Reading,Female,Met Std,87
+DM004QR04R,2004,4,Reading,Male,Met Std,79
+DL004QR04R,2004,4,Reading,LEP,Met Std,78
+DI004QR04R,2004,4,Reading,Native American,Met Std,
+DW004QR04R,2004,4,Reading,White,Met Std,87
+DH004QR04R,2004,4,Reading,Hispanic,Met Std,74
+DS004QR04R,2004,4,Reading,Special Education,Met Std,67
+DP004QR04R,2004,4,Reading,Asian/Pacific Islander,Met Std,
+DL004QW04R,2004,4,Writing,LEP,Met Std,89
+DM004QW04R,2004,4,Writing,Male,Met Std,92
+DP004QW04R,2004,4,Writing,Asian/Pacific Islander,Met Std,
+DA004QW04R,2004,4,Writing,All,Met Std,94
+DF004QW04R,2004,4,Writing,Female,Met Std,97
+DH004QW04R,2004,4,Writing,Hispanic,Met Std,91
+DI004QW04R,2004,4,Writing,Native American,Met Std,
+DS004QW04R,2004,4,Writing,Special Education,Met Std,86
+DB004QW04R,2004,4,Writing,African American,Met Std,94
+DW004QW04R,2004,4,Writing,White,Met Std,96
+DE004QW04R,2004,4,Writing,Economically Disadvantaged,Met Std,86
+DW005QA04R,2004,5,All,White,Met Std,77
+DE005QA04R,2004,5,All,Economically Disadvantaged,Met Std,57
+DB005QA04R,2004,5,All,African American,Met Std,69
+DL005QA04R,2004,5,All,LEP,Met Std,40
+DS005QA04R,2004,5,All,Special Education,Met Std,45
+DP005QA04R,2004,5,All,Asian/Pacific Islander,Met Std,71
+DM005QA04R,2004,5,All,Male,Met Std,72
+DI005QA04R,2004,5,All,Native American,Met Std,
+DA005QA04R,2004,5,All,All,Met Std,71
+DF005QA04R,2004,5,All,Female,Met Std,70
+DH005QA04R,2004,5,All,Hispanic,Met Std,60
+DW005QM04R,2004,5,Mathematics,White,Met Std,93
+DF005QM04R,2004,5,Mathematics,Female,Met Std,92
+DP005QM04R,2004,5,Mathematics,Asian/Pacific Islander,Met Std,86
+DH005QM04R,2004,5,Mathematics,Hispanic,Met Std,87
+DI005QM04R,2004,5,Mathematics,Native American,Met Std,
+DL005QM04R,2004,5,Mathematics,LEP,Met Std,60
+DS005QM04R,2004,5,Mathematics,Special Education,Met Std,65
+DM005QM04R,2004,5,Mathematics,Male,Met Std,90
+DB005QM04R,2004,5,Mathematics,African American,Met Std,93
+DA005QM04R,2004,5,Mathematics,All,Met Std,91
+DE005QM04R,2004,5,Mathematics,Economically Disadvantaged,Met Std,81
+DW005QR04R,2004,5,Reading,White,Met Std,87
+DI005QR04R,2004,5,Reading,Native American,Met Std,
+DL005QR04R,2004,5,Reading,LEP,Met Std,60
+DP005QR04R,2004,5,Reading,Asian/Pacific Islander,Met Std,71
+DS005QR04R,2004,5,Reading,Special Education,Met Std,63
+DA005QR04R,2004,5,Reading,All,Met Std,85
+DM005QR04R,2004,5,Reading,Male,Met Std,83
+DE005QR04R,2004,5,Reading,Economically Disadvantaged,Met Std,81
+DB005QR04R,2004,5,Reading,African American,Met Std,90
+DH005QR04R,2004,5,Reading,Hispanic,Met Std,77
+DF005QR04R,2004,5,Reading,Female,Met Std,87
+DW005QC04R,2004,5,Science,White,Met Std,82
+DS005QC04R,2004,5,Science,Special Education,Met Std,57
+DF005QC04R,2004,5,Science,Female,Met Std,75
+DA005QC04R,2004,5,Science,All,Met Std,78
+DB005QC04R,2004,5,Science,African American,Met Std,68
+DI005QC04R,2004,5,Science,Native American,Met Std,
+DM005QC04R,2004,5,Science,Male,Met Std,81
+DL005QC04R,2004,5,Science,LEP,Met Std,80
+DE005QC04R,2004,5,Science,Economically Disadvantaged,Met Std,65
+DP005QC04R,2004,5,Science,Asian/Pacific Islander,Met Std,86
+DH005QC04R,2004,5,Science,Hispanic,Met Std,71
+DA006QA04R,2004,6,All,All,Met Std,91
+DB006QA04R,2004,6,All,African American,Met Std,86
+DE006QA04R,2004,6,All,Economically Disadvantaged,Met Std,85
+DF006QA04R,2004,6,All,Female,Met Std,91
+DH006QA04R,2004,6,All,Hispanic,Met Std,87
+DI006QA04R,2004,6,All,Native American,Met Std,
+DL006QA04R,2004,6,All,LEP,Met Std,40
+DM006QA04R,2004,6,All,Male,Met Std,92
+DP006QA04R,2004,6,All,Asian/Pacific Islander,Met Std,92
+DS006QA04R,2004,6,All,Special Education,Met Std,82
+DW006QA04R,2004,6,All,White,Met Std,93
+DA006QM04R,2004,6,Mathematics,All,Met Std,93
+DB006QM04R,2004,6,Mathematics,African American,Met Std,90
+DE006QM04R,2004,6,Mathematics,Economically Disadvantaged,Met Std,89
+DF006QM04R,2004,6,Mathematics,Female,Met Std,92
+DH006QM04R,2004,6,Mathematics,Hispanic,Met Std,92
+DI006QM04R,2004,6,Mathematics,Native American,Met Std,
+DL006QM04R,2004,6,Mathematics,LEP,Met Std,60
+DM006QM04R,2004,6,Mathematics,Male,Met Std,95
+DP006QM04R,2004,6,Mathematics,Asian/Pacific Islander,Met Std,92
+DS006QM04R,2004,6,Mathematics,Special Education,Met Std,89
+DW006QM04R,2004,6,Mathematics,White,Met Std,94
+DA006QR04R,2004,6,Reading,All,Met Std,97
+DB006QR04R,2004,6,Reading,African American,Met Std,97
+DE006QR04R,2004,6,Reading,Economically Disadvantaged,Met Std,91
+DF006QR04R,2004,6,Reading,Female,Met Std,97
+DH006QR04R,2004,6,Reading,Hispanic,Met Std,93
+DI006QR04R,2004,6,Reading,Native American,Met Std,
+DL006QR04R,2004,6,Reading,LEP,Met Std,60
+DM006QR04R,2004,6,Reading,Male,Met Std,95
+DP006QR04R,2004,6,Reading,Asian/Pacific Islander,Met Std,
+DS006QR04R,2004,6,Reading,Special Education,Met Std,87
+DW006QR04R,2004,6,Reading,White,Met Std,98
+DA007QA04R,2004,7,All,All,Met Std,77
+DB007QA04R,2004,7,All,African American,Met Std,61
+DE007QA04R,2004,7,All,Economically Disadvantaged,Met Std,62
+DF007QA04R,2004,7,All,Female,Met Std,80
+DH007QA04R,2004,7,All,Hispanic,Met Std,69
+DI007QA04R,2004,7,All,Native American,Met Std,
+DL007QA04R,2004,7,All,LEP,Met Std,
+DM007QA04R,2004,7,All,Male,Met Std,73
+DP007QA04R,2004,7,All,Asian/Pacific Islander,Met Std,
+DS007QA04R,2004,7,All,Special Education,Met Std,46
+DW007QA04R,2004,7,All,White,Met Std,81
+DA007QM04R,2004,7,Mathematics,All,Met Std,81
+DB007QM04R,2004,7,Mathematics,African American,Met Std,67
+DE007QM04R,2004,7,Mathematics,Economically Disadvantaged,Met Std,71
+DF007QM04R,2004,7,Mathematics,Female,Met Std,82
+DH007QM04R,2004,7,Mathematics,Hispanic,Met Std,76
+DI007QM04R,2004,7,Mathematics,Native American,Met Std,
+DL007QM04R,2004,7,Mathematics,LEP,Met Std,
+DM007QM04R,2004,7,Mathematics,Male,Met Std,80
+DP007QM04R,2004,7,Mathematics,Asian/Pacific Islander,Met Std,
+DS007QM04R,2004,7,Mathematics,Special Education,Met Std,43
+DW007QM04R,2004,7,Mathematics,White,Met Std,84
+DA007QR04R,2004,7,Reading,All,Met Std,90
+DB007QR04R,2004,7,Reading,African American,Met Std,75
+DE007QR04R,2004,7,Reading,Economically Disadvantaged,Met Std,80
+DF007QR04R,2004,7,Reading,Female,Met Std,93
+DH007QR04R,2004,7,Reading,Hispanic,Met Std,84
+DI007QR04R,2004,7,Reading,Native American,Met Std,
+DL007QR04R,2004,7,Reading,LEP,Met Std,
+DM007QR04R,2004,7,Reading,Male,Met Std,88
+DP007QR04R,2004,7,Reading,Asian/Pacific Islander,Met Std,
+DS007QR04R,2004,7,Reading,Special Education,Met Std,76
+DW007QR04R,2004,7,Reading,White,Met Std,94
+DA007QW04R,2004,7,Writing,All,Met Std,95
+DB007QW04R,2004,7,Writing,African American,Met Std,94
+DE007QW04R,2004,7,Writing,Economically Disadvantaged,Met Std,90
+DF007QW04R,2004,7,Writing,Female,Met Std,98
+DH007QW04R,2004,7,Writing,Hispanic,Met Std,90
+DI007QW04R,2004,7,Writing,Native American,Met Std,
+DL007QW04R,2004,7,Writing,LEP,Met Std,
+DM007QW04R,2004,7,Writing,Male,Met Std,91
+DP007QW04R,2004,7,Writing,Asian/Pacific Islander,Met Std,
+DS007QW04R,2004,7,Writing,Special Education,Met Std,94
+DW007QW04R,2004,7,Writing,White,Met Std,96
+DA008QA04R,2004,8,All,All,Met Std,74
+DB008QA04R,2004,8,All,African American,Met Std,70
+DE008QA04R,2004,8,All,Economically Disadvantaged,Met Std,58
+DF008QA04R,2004,8,All,Female,Met Std,76
+DH008QA04R,2004,8,All,Hispanic,Met Std,62
+DI008QA04R,2004,8,All,Native American,Met Std,
+DL008QA04R,2004,8,All,LEP,Met Std,
+DM008QA04R,2004,8,All,Male,Met Std,72
+DP008QA04R,2004,8,All,Asian/Pacific Islander,Met Std,71
+DS008QA04R,2004,8,All,Special Education,Met Std,60
+DW008QA04R,2004,8,All,White,Met Std,81
+DA008QM04R,2004,8,Mathematics,All,Met Std,77
+DB008QM04R,2004,8,Mathematics,African American,Met Std,70
+DE008QM04R,2004,8,Mathematics,Economically Disadvantaged,Met Std,60
+DF008QM04R,2004,8,Mathematics,Female,Met Std,80
+DH008QM04R,2004,8,Mathematics,Hispanic,Met Std,65
+DI008QM04R,2004,8,Mathematics,Native American,Met Std,
+DL008QM04R,2004,8,Mathematics,LEP,Met Std,
+DM008QM04R,2004,8,Mathematics,Male,Met Std,74
+DP008QM04R,2004,8,Mathematics,Asian/Pacific Islander,Met Std,71
+DS008QM04R,2004,8,Mathematics,Special Education,Met Std,63
+DW008QM04R,2004,8,Mathematics,White,Met Std,84
+DA008QR04R,2004,8,Reading,All,Met Std,95
+DB008QR04R,2004,8,Reading,African American,Met Std,96
+DE008QR04R,2004,8,Reading,Economically Disadvantaged,Met Std,94
+DF008QR04R,2004,8,Reading,Female,Met Std,96
+DH008QR04R,2004,8,Reading,Hispanic,Met Std,92
+DI008QR04R,2004,8,Reading,Native American,Met Std,
+DL008QR04R,2004,8,Reading,LEP,Met Std,
+DM008QR04R,2004,8,Reading,Male,Met Std,94
+DP008QR04R,2004,8,Reading,Asian/Pacific Islander,Met Std,92
+DS008QR04R,2004,8,Reading,Special Education,Met Std,89
+DW008QR04R,2004,8,Reading,White,Met Std,97
+DA008QS04R,2004,8,Social Studies,All,Met Std,94
+DB008QS04R,2004,8,Social Studies,African American,Met Std,95
+DE008QS04R,2004,8,Social Studies,Economically Disadvantaged,Met Std,86
+DF008QS04R,2004,8,Social Studies,Female,Met Std,93
+DH008QS04R,2004,8,Social Studies,Hispanic,Met Std,91
+DI008QS04R,2004,8,Social Studies,Native American,Met Std,
+DL008QS04R,2004,8,Social Studies,LEP,Met Std,
+DM008QS04R,2004,8,Social Studies,Male,Met Std,95
+DP008QS04R,2004,8,Social Studies,Asian/Pacific Islander,Met Std,
+DS008QS04R,2004,8,Social Studies,Special Education,Met Std,90
+DW008QS04R,2004,8,Social Studies,White,Met Std,94
+DA009QA04R,2004,9,All,All,Met Std,74
+DB009QA04R,2004,9,All,African American,Met Std,70
+DE009QA04R,2004,9,All,Economically Disadvantaged,Met Std,58
+DF009QA04R,2004,9,All,Female,Met Std,73
+DH009QA04R,2004,9,All,Hispanic,Met Std,63
+DI009QA04R,2004,9,All,Native American,Met Std,
+DL009QA04R,2004,9,All,LEP,Met Std,57
+DM009QA04R,2004,9,All,Male,Met Std,75
+DP009QA04R,2004,9,All,Asian/Pacific Islander,Met Std,64
+DS009QA04R,2004,9,All,Special Education,Met Std,55
+DW009QA04R,2004,9,All,White,Met Std,79
+DA009QM04R,2004,9,Mathematics,All,Met Std,75
+DB009QM04R,2004,9,Mathematics,African American,Met Std,71
+DE009QM04R,2004,9,Mathematics,Economically Disadvantaged,Met Std,61
+DF009QM04R,2004,9,Mathematics,Female,Met Std,75
+DH009QM04R,2004,9,Mathematics,Hispanic,Met Std,65
+DI009QM04R,2004,9,Mathematics,Native American,Met Std,
+DL009QM04R,2004,9,Mathematics,LEP,Met Std,62
+DM009QM04R,2004,9,Mathematics,Male,Met Std,75
+DP009QM04R,2004,9,Mathematics,Asian/Pacific Islander,Met Std,64
+DS009QM04R,2004,9,Mathematics,Special Education,Met Std,50
+DW009QM04R,2004,9,Mathematics,White,Met Std,80
+DA009QR04R,2004,9,Reading,All,Met Std,94
+DB009QR04R,2004,9,Reading,African American,Met Std,94
+DE009QR04R,2004,9,Reading,Economically Disadvantaged,Met Std,84
+DF009QR04R,2004,9,Reading,Female,Met Std,95
+DH009QR04R,2004,9,Reading,Hispanic,Met Std,88
+DI009QR04R,2004,9,Reading,Native American,Met Std,
+DL009QR04R,2004,9,Reading,LEP,Met Std,64
+DM009QR04R,2004,9,Reading,Male,Met Std,94
+DP009QR04R,2004,9,Reading,Asian/Pacific Islander,Met Std,
+DS009QR04R,2004,9,Reading,Special Education,Met Std,88
+DW009QR04R,2004,9,Reading,White,Met Std,96
+DA010QA04R,2004,10,All,All,Met Std,66
+DB010QA04R,2004,10,All,African American,Met Std,57
+DE010QA04R,2004,10,All,Economically Disadvantaged,Met Std,54
+DF010QA04R,2004,10,All,Female,Met Std,66
+DH010QA04R,2004,10,All,Hispanic,Met Std,57
+DI010QA04R,2004,10,All,Native American,Met Std,
+DL010QA04R,2004,10,All,LEP,Met Std,9
+DM010QA04R,2004,10,All,Male,Met Std,66
+DP010QA04R,2004,10,All,Asian/Pacific Islander,Met Std,72
+DS010QA04R,2004,10,All,Special Education,Met Std,25
+DW010QA04R,2004,10,All,White,Met Std,70
+DA010QE04R,2004,10,English Language Arts,All,Met Std,86
+DB010QE04R,2004,10,English Language Arts,African American,Met Std,89
+DE010QE04R,2004,10,English Language Arts,Economically Disadvantaged,Met Std,80
+DF010QE04R,2004,10,English Language Arts,Female,Met Std,89
+DH010QE04R,2004,10,English Language Arts,Hispanic,Met Std,85
+DI010QE04R,2004,10,English Language Arts,Native American,Met Std,
+DL010QE04R,2004,10,English Language Arts,LEP,Met Std,27
+DM010QE04R,2004,10,English Language Arts,Male,Met Std,82
+DP010QE04R,2004,10,English Language Arts,Asian/Pacific Islander,Met Std,83
+DS010QE04R,2004,10,English Language Arts,Special Education,Met Std,58
+DW010QE04R,2004,10,English Language Arts,White,Met Std,85
+DA010QM04R,2004,10,Mathematics,All,Met Std,80
+DB010QM04R,2004,10,Mathematics,African American,Met Std,67
+DE010QM04R,2004,10,Mathematics,Economically Disadvantaged,Met Std,72
+DF010QM04R,2004,10,Mathematics,Female,Met Std,80
+DH010QM04R,2004,10,Mathematics,Hispanic,Met Std,73
+DI010QM04R,2004,10,Mathematics,Native American,Met Std,
+DL010QM04R,2004,10,Mathematics,LEP,Met Std,64
+DM010QM04R,2004,10,Mathematics,Male,Met Std,80
+DP010QM04R,2004,10,Mathematics,Asian/Pacific Islander,Met Std,83
+DS010QM04R,2004,10,Mathematics,Special Education,Met Std,35
+DW010QM04R,2004,10,Mathematics,White,Met Std,84
+DA010QC04R,2004,10,Science,All,Met Std,79
+DB010QC04R,2004,10,Science,African American,Met Std,74
+DE010QC04R,2004,10,Science,Economically Disadvantaged,Met Std,68
+DF010QC04R,2004,10,Science,Female,Met Std,74
+DH010QC04R,2004,10,Science,Hispanic,Met Std,68
+DI010QC04R,2004,10,Science,Native American,Met Std,
+DL010QC04R,2004,10,Science,LEP,Met Std,36
+DM010QC04R,2004,10,Science,Male,Met Std,84
+DP010QC04R,2004,10,Science,Asian/Pacific Islander,Met Std,83
+DS010QC04R,2004,10,Science,Special Education,Met Std,51
+DW010QC04R,2004,10,Science,White,Met Std,84
+DA010QS04R,2004,10,Social Studies,All,Met Std,93
+DB010QS04R,2004,10,Social Studies,African American,Met Std,91
+DE010QS04R,2004,10,Social Studies,Economically Disadvantaged,Met Std,84
+DF010QS04R,2004,10,Social Studies,Female,Met Std,90
+DH010QS04R,2004,10,Social Studies,Hispanic,Met Std,89
+DI010QS04R,2004,10,Social Studies,Native American,Met Std,
+DL010QS04R,2004,10,Social Studies,LEP,Met Std,36
+DM010QS04R,2004,10,Social Studies,Male,Met Std,96
+DP010QS04R,2004,10,Social Studies,Asian/Pacific Islander,Met Std,89
+DS010QS04R,2004,10,Social Studies,Special Education,Met Std,73
+DW010QS04R,2004,10,Social Studies,White,Met Std,94
+DA011QA04R,2004,11,All,All,Met Std,83
+DB011QA04R,2004,11,All,African American,Met Std,85
+DE011QA04R,2004,11,All,Economically Disadvantaged,Met Std,69
+DF011QA04R,2004,11,All,Female,Met Std,83
+DH011QA04R,2004,11,All,Hispanic,Met Std,69
+DI011QA04R,2004,11,All,Native American,Met Std,
+DW011QA04R,2004,11,All,White,Met Std,87
+DL011QA04R,2004,11,All,LEP,Met Std,
+DP011QA04R,2004,11,All,Asian/Pacific Islander,Met Std,73
+DS011QA04R,2004,11,All,Special Education,Met Std,47
+DM011QA04R,2004,11,All,Male,Met Std,82
+DA011QE04R,2004,11,English Language Arts,All,Met Std,89
+DB011QE04R,2004,11,English Language Arts,African American,Met Std,93
+DE011QE04R,2004,11,English Language Arts,Economically Disadvantaged,Met Std,77
+DF011QE04R,2004,11,English Language Arts,Female,Met Std,92
+DH011QE04R,2004,11,English Language Arts,Hispanic,Met Std,80
+DM011QE04R,2004,11,English Language Arts,Male,Met Std,87
+DP011QE04R,2004,11,English Language Arts,Asian/Pacific Islander,Met Std,82
+DI011QE04R,2004,11,English Language Arts,Native American,Met Std,
+DL011QE04R,2004,11,English Language Arts,LEP,Met Std,
+DS011QE04R,2004,11,English Language Arts,Special Education,Met Std,44
+DW011QE04R,2004,11,English Language Arts,White,Met Std,91
+DA011QM04R,2004,11,Mathematics,All,Met Std,93
+DB011QM04R,2004,11,Mathematics,African American,Met Std,91
+DE011QM04R,2004,11,Mathematics,Economically Disadvantaged,Met Std,94
+DF011QM04R,2004,11,Mathematics,Female,Met Std,92
+DH011QM04R,2004,11,Mathematics,Hispanic,Met Std,90
+DI011QM04R,2004,11,Mathematics,Native American,Met Std,
+DL011QM04R,2004,11,Mathematics,LEP,Met Std,
+DW011QM04R,2004,11,Mathematics,White,Met Std,94
+DM011QM04R,2004,11,Mathematics,Male,Met Std,94
+DP011QM04R,2004,11,Mathematics,Asian/Pacific Islander,Met Std,80
+DS011QM04R,2004,11,Mathematics,Special Education,Met Std,88
+DA011QC04R,2004,11,Science,All,Met Std,93
+DB011QC04R,2004,11,Science,African American,Met Std,93
+DI011QC04R,2004,11,Science,Native American,Met Std,
+DL011QC04R,2004,11,Science,LEP,Met Std,
+DH011QC04R,2004,11,Science,Hispanic,Met Std,87
+DE011QC04R,2004,11,Science,Economically Disadvantaged,Met Std,87
+DF011QC04R,2004,11,Science,Female,Met Std,89
+DM011QC04R,2004,11,Science,Male,Met Std,96
+DW011QC04R,2004,11,Science,White,Met Std,95
+DP011QC04R,2004,11,Science,Asian/Pacific Islander,Met Std,82
+DS011QC04R,2004,11,Science,Special Education,Met Std,56
+DM011QS04R,2004,11,Social Studies,Male,Met Std,99
+DL011QS04R,2004,11,Social Studies,LEP,Met Std,
+DW011QS04R,2004,11,Social Studies,White,Met Std,99
+DA011QS04R,2004,11,Social Studies,All,Met Std,98
+DS011QS04R,2004,11,Social Studies,Special Education,Met Std,86
+DP011QS04R,2004,11,Social Studies,Asian/Pacific Islander,Met Std,91
+DB011QS04R,2004,11,Social Studies,African American,Met Std,
+DE011QS04R,2004,11,Social Studies,Economically Disadvantaged,Met Std,98
+DF011QS04R,2004,11,Social Studies,Female,Met Std,98
+DH011QS04R,2004,11,Social Studies,Hispanic,Met Std,96
+DI011QS04R,2004,11,Social Studies,Native American,Met Std,

@@ -1,0 +1,930 @@
+---
+title: "Exploratory Data Analysis"
+author: "Kelsey Gonzalez"
+format: html
+---
+
+New code chunk shortcut =   Option + Cmd + I
+
+Expand cursor = Cntrl + Option + DownArrow 
+
+The Grammar of Animation
+
+    Transitions
+    Views
+    Shadows
+    Easing
+    Enter and Exit
+
+
+```{r}
+# Load libraries
+
+library(tidyverse)
+library(qicharts2)
+library(haven)
+library(readxl)
+library(skimr)
+library(visdat)
+library(gghighlight)
+library(dplyr)
+library(stringr)
+library(ggtext)
+library(gganimate)
+library(ggplot2)
+library(purrr)
+
+```
+
+
+## readxl for loading excel data
+
+### Often Not a Good Idea to Import Directly from Excel
+
+    RStudio is getting better at importing data from Excel as are other packages
+    You may want to import data directly from Excel? Not recommended.
+    Excel is designed for human data input and data analysis and not efficient data management
+
+    Potential for errors or excess time spent adjusting the data in Excel
+    People tend to color code information in Excel or be inconsistent in their formatting
+
+    Instead, export the data from the Excel worksheet as a .CSV. Then read the .CSV file into R.
+
+
+
+```{r}
+
+### load scuc data files
+
+df1 <- read_csv(file = here::here("data","TEST SCUC 2004 TEA TAKS Data Grades 3-11.csv"))
+
+df2 <- read_csv(file = here::here("data","SCUC Snapshots 1995 to 2022-LONG.csv"))
+
+```
+
+ ## Start Exploring
+ 
+
+```{r}
+
+glimpse(df1)
+
+glimpse(df2)
+
+```
+
+
+readr tells you how it converted the columns - also known as parsing the data. you can uncover the exact ways it was read in with spec
+
+```{r}
+
+spec(df1)
+
+spec(df2)
+
+```
+
+
+Readr automatically previews about 1000 rows of each column to guess the column type. If the parsing is incorrect, you can use the optional coltypes = argument within read_csv() to correct the column type.
+Loading other data types
+
+
+
+## EDA
+
+## Introduction
+
+    Once you have loaded and checked your data for completeness and consistency you want to begin to look at it.
+    You may have some initial questions or hypotheses about your question of interest
+    EDA is a process for exploring your data to assess initial hypotheses and generate or uncover new ones
+    You have to be careful about “data snooping” from a statistical perspective
+    It helps to follow a general strategy for EDA
+
+
+## General Strategies
+
+    Plot the distribution of every variable.
+
+    Look for symmetry, skewness, modality, etc..
+
+    Plot the bi-variate distribution of every pair of variables (to find which variables are associated).
+
+    Again, look for patterns and relationships, skewness, curvature, modality, gaps, discontinuities, , etc..
+
+    Color-code by variables to see if relationships appear more clearly.
+
+    Calculate lots of numerical summary statistics.
+
+    Look at “missingness.”
+
+    Look at extreme values for potential “outliers” and patterns
+
+    EDA is about curiosity.
+
+    Ask many questions, use many plots, investigate many aspects of your data.
+
+    This will let you hone in on the few interesting questions you want to pursue deeper.
+
+    Keep track of what you are doing with your .Rmd file text chunks and code chunks so you can protext yourself from becoming a victim of data snooping - only cherry picking the “good results”
+
+
+
+## Automated EDA
+
+## skimr
+
+skimr provides a frictionless approach to summary statistics which conforms to the principle of least surprise, displaying summary statistics the user can skim quickly to understand their data. It handles different data types and returns a skim_df object which can be included in a pipeline or displayed nicely for the human reader.
+
+
+```{r}
+
+library(skimr)
+
+skimr::skim(df1)
+
+skimr::skim(df2)
+
+```
+
+
+```{r}
+# examine for NA values
+
+vis_dat(df1)
+
+vis_dat(df2)
+
+```
+
+
+
+```{r}
+
+#missing viz
+
+vis_miss(df1, 
+         cluster = TRUE)
+
+
+vis_miss(df2, 
+         cluster = TRUE)
+
+```
+
+
+## Why EDA
+
+
+## Why do we want to visualize our data?
+
+    All the graphs are based on data with the same summary statistics!
+
+We can see this more explicitly with the “DatasauRus Dozen” Package. We have nearly identical summary statistics, but the actual data looks vastly different from eachother.
+
+
+```{r}
+
+library(datasauRus)
+
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(
+    mean_x    = mean(x),
+    mean_y    = mean(y),
+    std_dev_x = sd(x),
+    std_dev_y = sd(y),
+    corr_x_y  = cor(x, y)
+  )
+
+datasaurus_dozen
+
+```
+
+Now, look at the df1 scuc data
+
+# Summarize df1 data.  There is only one year, so must limit to comparison plots.
+
+# Prepare df1 data set for plotting
+
+```{r}
+
+avgbycategory <- df1 %>%
+  filter(category != "All") %>%
+  mutate(grade_factor = as.factor(grade)) %>% 
+  select(
+    category, 
+    grade_factor, 
+    subject, 
+    value) %>%
+  group_by(
+    category, 
+    grade_factor,
+    subject) %>% 
+  summarise(
+    mean_value = mean(
+      value, 
+      na.rm = TRUE)
+  )
+
+```
+
+
+# Create a plot from the df1 data
+
+```{r}
+
+# Specify desired categories from df1
+desired_categories <- c("Male", "Female")
+
+# Specify desired metric
+desired_metric <- c("mean_value")
+
+# Specify desired subjects
+desired_subjects <- c("All")
+
+# Specify desired years 
+# desired_years <- 1995:2022  # range of years
+
+# Specify desired level of achievement
+# desired_level <- c("approaches_above")
+
+# Specify desired grade_factor level
+desired_grades <- c("3", "4", "5", "6", "7", "8", "9", "10", "11")
+
+# Filter rows in the modified df1 data frame
+
+dfplot <- avgbycategory %>%
+  filter((category %in% desired_categories) &
+         (subject %in% desired_subjects) &
+         (grade_factor %in% desired_grades)
+         )
+
+ggplot(dfplot,
+       aes(
+         x = grade_factor, 
+         y = mean_value, 
+         fill = category)) +
+  geom_col(position = "dodge") +
+  transition_states(grade_factor, transition_length = 5, state_length = 5, wrap = FALSE) +
+  shadow_mark() +
+  labs(x = "Grade", y = "Mean Value", fill = "Category")
+
+```
+
+
+Now plot df1 by ethnicity...
+
+```{r}
+
+# Specify desired categories in df1
+desired_categories <- as.character(avgbycategory$category[!(avgbycategory$category %in% c("Male", "Female"))])
+
+# Specify desired metric
+desired_metric <- c("mean_value")
+
+# Specify desired subjects
+desired_subjects <- c("All")
+
+# Specify desired years 
+# desired_years <- 1995:2022  # range of years
+
+# Specify desired level of achievement
+# desired_level <- c("approaches_above")
+
+# Specify desired grade_factor level
+desired_grades <- c("3", "4", "5", "6", "7", "8", "9", "10", "11")
+
+# Filter rows in the modified df1 data frame
+
+dfplot <- avgbycategory %>%
+  filter((category %in% desired_categories) &
+         (subject %in% desired_subjects) &
+         (grade_factor %in% desired_grades)
+         )
+
+ggplot(dfplot,
+       aes(
+         x = grade_factor, 
+         y = mean_value, 
+         fill = category)) +
+  geom_col(position = "dodge") +
+  transition_states(
+    grade_factor, 
+    transition_length = 5, 
+    state_length = 10, 
+    wrap = FALSE) +
+  shadow_mark() +
+  labs(
+    x = "Grade", 
+    y = "Mean Value", 
+    fill = "Category")
+
+```
+
+
+
+Now, Let's examine df2 for STAAR testing on all students, for all subjects, for all grade levels combined, at the  over time.
+
+## NOTE:  df1 has all possible values for grade level     #####
+## NOTE:  df2 has only one value for grade level = "all"  #####
+
+Prepare the data frame named df2plot...
+
+```{r}
+# Specify desired grouping categories from df2
+
+# c("All Subjects", "White", "African American", "Hispanic", "Asian", "American Indian", "Pacific Islander", "Economically Disadvantaged", "2 or More Races")
+
+desired_categories <- c("Teacher Turnover Rate")
+
+# Specify desired metric
+desired_metric <- c("teachers")
+
+# Sprcify desired years 
+desired_years <- 1995:2022  # range of years
+
+# Specify desired level of achievement
+# desired_level <- c("approaches_above")
+
+# Specify desired grade level
+# c("all", "3", "4", "5", "6", "7", "8", "9", "10", "11")
+##### NOTE:  df1 has all possible values for grade level     #####
+##### NOTE:  df2 has only one value for grade level = "all"  #####
+
+# desired_grades <- c("all")
+
+# Filter the data frame
+
+df2plot <- df2 %>%
+  filter((grouping %in% desired_categories) &
+         (metric %in% desired_metric) &
+         (yr %in% desired_years)) 
+         # (grade %in% desired_grades) &
+         # (level_achieved %in% desired_level))
+
+# Create dynamic title and subtitle
+title <- paste0("Run Chart of STAAR Scores for Category ", paste(desired_categories, collapse = " and "), " for ", paste(desired_grades, collapse = " and "), " Grades,")
+# subtitle <- paste0("for the '", 
+#                    paste(desired_level,
+#                          collapse = " and "), 
+#                    "' Level, for the years ", 
+#                    min(desired_years),
+#                    " - ",
+#                    max(desired_years))
+
+
+```
+
+
+# Create the chart with qicharts2
+
+```{r}
+
+qic(x = df2plot$yr,
+    y = df2plot$value,
+    # n	= Vector of subgroup sizes (denominator).
+    # data  = Data frame containing variables used in the plot,
+    # facets = One or two sided formula with factors used for facetting plots,
+    # notes = Character vector of notes to be added to individual data points.
+    chart = "run",
+    # chart = c("run", "i", "mr", "xbar", "s", "t", "p", "pp", "c", "u", "up", "g"),
+    # agg.fun = c("mean", "median", "sum", "sd"),
+    # method = c("anhoej (default)", "bestbox", "cutbox"),
+    #  multiply = 10,  # Number indicating a number to multiply y axis by, e.g. 100 for percents rather than proportions. See also y.percent argument.
+    # method = c("anhoej", "bestbox", "cutbox"),
+    # multiply = 1, #Number indicating a number to multiply y axis by, e.g. 100 for percents rather than proportions. See also y.percent argument
+    # freeze = NULL, # Integer indicating the last data point to include in calculation of baseline parameters for centre and control lines. Ignored if part argument is given.
+    # part = NULL,  # Either integer vector indicating data points before recalculation of centre and control lines or character vector indicating chart parts.
+    # exclude = NULL,  # Integer vector indicating data points to exclude from calculations of centre and control lines.
+    # target = NA * 1,  # Numeric, either a single value indicating a target value to be plotted as a horizontal line or a vector for variable target line.
+    # cl = NA * 1,  # Numeric, either a single value indicating the centre line if known in advance or a vector for variable centre line.
+    # nrow = NULL,  # Number indicating the preferred number of rows in facets.
+    # ncol = NULL,  # Number indicating the preferred number of columns in facets.
+    # scales = "fixed",  # Character string, one of 'fixed' (default), 'free_y', 'free_x', or 'free' indicating whether y and x axis scales should be the same for all panels or free.
+    # part.labels = NULL,  # Character vector specifying labels for chart parts created with the freeze or part argument.
+    # show.labels = is.null(facets),  # Logical indicating whether to show labels for centre and control lines on chart. Defaults to TRUE when facets argument is NULL.
+    # show.95 = FALSE,  # Logical indicating whether to show 95 control limits on chart. Defaults to FALSE.
+    # decimals = 1,  # Integer indicating the preferred number of decimals in centre and control line labels.
+   point.size = 2.0,  # Number specifying the size of data points (default = 1.5).
+    # x.period = NULL,  # Character string specifying the interval cut points of datetime x values used for aggregating y values by week, month, etc. See the breaks argument of ?cut.POSIXt() for possible values.
+    # x.format = NULL,  # Date format of x axis labels. See ?strftime() for possible date formats.
+    # x.angle = 90,  # Number indicating the angle of x axis labels.
+    # x.pad = 35,  # Number indicating expansion of x axis to make room for axis labels.
+    y.expand = 25,  # Numeric value to include in y axis. Useful e.g. for starting the y axis at zero.
+    # y.neg = TRUE,  # If TRUE (default), the y axis is allowed to be negative (only relevant for I and Xbar charts).
+  # y.percent = TRUE,  # If TRUE, formats y axis labels as percentages.
+  # y.percent.accuracy = 1,  # A number to round percentage labels on y axis. Use 1 to show no decimals, 0.1 to show 1 decimal etc.
+    show.grid = TRUE,  # If TRUE, shows grid.
+    # flip = FALSE,  # If TRUE, rotates the plot 90 degrees.
+    # strip.horizontal = FALSE,  # If TRUE, makes y strip horizontal.
+    # print.summary = TRUE,  # If TRUE, prints summary INSTEAD OF PLOT
+    # return.data = TRUE,  # If TRUE, returns underlying data frame INSTEAD OF PLOT.
+    title  = title,
+    # subtitle = subtitle,
+    caption = "In this Plot, All Standardized Tests are Referred to as STAAR Scores",
+    ylab = 'STAAR Scores (in percent)',
+    xlab = 'Years'
+  )
+  
+
+```
+
+##########  CREATE FUNCTION TO PRODUCE A BUNCH OF RUN CHARTS ##########
+
+
+```{r}
+
+library(dplyr)
+library(qicharts2)
+library(purrr)
+
+# Specify desired categories
+desired_categories <- c("All Subjects", "White", "African American", "Hispanic", "Asian", 
+                        "American Indian", "Pacific Islander", "Economically Disadvantaged", "2 or More Races")
+
+# Specify desired metric
+desired_metric <- c("staar")
+
+# Specify desired years 
+desired_years <- 1995:2022  # range of years
+
+# Specify desired level of achievement
+desired_level <- c("approaches_above")
+
+# Specify desired grade level
+desired_grades <- c("all")
+
+# Filter the data frame
+df2plot <- df2 %>%
+  filter((grouping %in% desired_categories) &
+         (metric %in% desired_metric) &
+         (yr %in% desired_years) &
+         (grade %in% desired_grades) &
+         (level_achieved %in% desired_level))
+
+# Define the function with arguments for desired parameters
+generate_run_chart <- function(df, category, desired_years, desired_level) {
+  # Filter data for the specific category
+  df_category <- df %>%
+    filter(grouping == category)
+  
+  # Create dynamic title and subtitle
+  title <- paste0("Run Chart of STAAR Scores for Category ", category, " for All Grades,")
+  subtitle <- paste0("for the '", paste(desired_level, collapse = " and "), "' Level, for the years ", min(desired_years), " - ", max(desired_years))
+  
+  # Create the chart with qicharts2
+  qic(x = df_category$yr,
+      y = df_category$value,
+      chart = "run",
+      y.expand = 25,
+      show.grid = TRUE,
+      title = title,
+      subtitle = subtitle,
+      caption = "In this Plot, All Standardized Tests are Referred to as STAAR Scores",
+      ylab = 'STAAR Scores (in percent)',
+      xlab = 'Years'
+  )
+}
+
+# Apply the function with desired parameters for each category
+plots <- map(desired_categories, generate_run_chart, df = df2plot, desired_years = desired_years, desired_level = desired_level)
+
+# Print each plot
+walk(plots, print)
+
+
+```
+
+
+
+Next, compare STAAR performance for ethnic groups at the 'Approaches Grade Level Standard, or Above' level
+
+
+```{r}
+
+# Specify desired categories from df2
+desired_categories <- c("All", "White", "African American", "Hispanic", "Asian")
+
+# Specify desired metric
+desired_metric <- c("staar")
+
+# Sprcify desired years 
+desired_years <- 1995:2022  # range of years
+
+# Specify desired level of achievement
+desired_level <- c("approaches_above")
+
+# Specify desired grade level
+desired_grade <- c("all")
+
+# Filter the data frame
+
+df2plot <- df2 %>%
+  filter((grouping %in% desired_categories) &
+         (metric %in% desired_metric) &
+         (yr %in% desired_years) &
+         (grade %in% desired_grade) &
+         (level_achieved %in% desired_level))
+
+ggplot(df2plot,
+       aes(
+         x = yr, 
+         y = value, 
+         color = grouping)) +
+  geom_line(na.rm = FALSE) +
+  labs(color = "Groupings") +
+  ylim(c(25, 100))  # Replace min_value and max_value with appropriate values
+
+```
+
+Here we compare STAAR scores for those failing the test
+
+```{r}
+
+# Specify desired categories
+desired_categories <- c("All", "White", "African American", "Hispanic", "Asian")
+
+# Specify desired metric
+desired_metric <- c("staar")
+
+# Sprcify desired years 
+desired_years <- 1995:2022  # range of years
+
+# Specify desired level of achievement
+desired_level <- c("failing")
+
+# Specify desired grade level
+desired_grade <- c("all")
+
+# Filter the data frame
+
+df2plot <- df2 %>%
+  filter((grouping %in% desired_categories) &
+         (metric %in% desired_metric) &
+         (yr %in% desired_years) &
+         (grade %in% desired_grade) &
+         (level_achieved %in% desired_level))
+
+ggplot(df2plot,
+       aes(
+         x = yr, 
+         y = value, 
+         color = grouping)) +
+  geom_line(na.rm = FALSE) +
+  labs(color = "Groupings") +
+  ylim(c(0, 70))  # Replace min_value and max_value with appropriate values
+
+```
+
+
+Staar Scores at 'Approaches, and above' for all subjects
+
+```{r}
+
+# Specify desired categories
+desired_categories <- c("All Subjects", "Mathematics", "Reading/ELA", "Writing", "Science", "Social Studies")
+
+# Specify desired metric
+desired_metric <- c("staar")
+
+# Sprcify desired years 
+desired_years <- 1995:2022  # range of years
+
+# Specify desired level of achievement
+desired_level <- c("approaches_above")
+
+# Specify desired grade level
+desired_grade <- c("all")
+
+# Filter the data frame
+
+df2plot <- df2 %>%
+  filter((grouping %in% desired_categories) &
+         (metric %in% desired_metric) &
+         (yr %in% desired_years) &
+         (grade %in% desired_grade) &
+         (level_achieved %in% desired_level))
+
+ggplot(df2plot,
+       aes(
+         x = yr, 
+         y = value, 
+         color = grouping)) +
+  geom_line(na.rm = FALSE) +
+  labs(color = "Grouping") +
+  scale_y_continuous(limits = c(40, 100), expand = c(0.01, 0.01))
+
+```
+
+Highlighting the 'All Subjects' line in the plot
+
+```{r}
+library(stringr)
+library(ggtext)
+
+# Specify desired categories
+desired_categories <- c("All Subjects", "Mathematics", "Reading/ELA", "Writing", "Science", "Social Studies")
+
+# Specify desired metric
+desired_metrics <- c("staar")
+
+# Specify desired years 
+desired_periods <- 1995:2022
+
+# Specify desired level of achievement
+desired_levels <- c("approaches_above")
+
+# Specify desired grade level
+desired_grades <- c("all")
+
+# Specify periods coverted for use in Title
+periods_covered <- "1995 - 2022"
+
+
+# Filter the data frame
+df2plot <- df2 %>%
+  filter((grouping %in% desired_categories) &
+         (metric %in% desired_metrics) &
+         (yr %in% desired_periods) &
+         (grade %in% desired_grades) &
+         (level_achieved %in% desired_levels))
+
+# Create a dynamic title with word wrap
+title <- paste("Plotting the Data for:", paste(str_wrap(paste(desired_categories, collapse = ", "), width = 30), collapse = "\n"), 
+               "for", paste(str_wrap(paste(desired_metrics, collapse = ", "), width = 30), collapse = "\n"),
+               "at the", paste(str_wrap(paste(desired_levels, collapse = ", "), width = 30), collapse = "\n"),
+               "Level for the periods", paste(str_wrap(paste(periods_covered, collapse = ", "), width = 30), collapse = "\n")
+               )
+
+# Label for y-axis
+y_label <- "Scores"
+
+ggplot(df2plot, aes(x = yr, y = value, color = grouping)) +
+  geom_line(data = subset(df2plot, grouping == "All Subjects"), size = 2.0) +
+  geom_line(data = subset(df2plot, grouping != "All Subjects"), size = 1) +
+  labs(color = "Grouping", y = y_label) +
+  ggtitle(title) +  # Using ggtext for title
+  gghighlight(grouping == "All Subjects" | grouping == "Writing" | grouping == "Social Studies", use_direct_label = FALSE) +
+  scale_color_manual(values = c("All Subjects" = "red",
+                                "Mathematics" = "gray50",
+                                "Reading/ELA" = "gray50",
+                                "Writing" = "green",
+                                "Science" = "gray50",
+                                "Social Studies" = "blue")) +
+  scale_y_continuous(limits = c(25, 100), expand = c(0.08, 0.08)) +
+  scale_x_continuous(breaks = seq(1995, 2022, by = 1)) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)
+  )
+
+```
+
+
+Ethnic demographics of SCUC throughout the years
+
+```{r}
+library(stringr)
+library(ggtext)
+
+# Specify desired categories
+desired_categories <- c("% African American", "% White", "% Hispanic", "% Asian", "% American Indian", "% Pacific Islander", "2 or More Races")
+
+# Specify desired metric
+desired_metrics <- c("demo")
+
+# Specify desired years 
+desired_periods <- 1995:2022
+
+# Specify periods covered for use in Title
+periods_covered <- "1995 - 2022"
+
+
+# Filter the data frame
+df2plot <- df2 %>%
+  filter((grouping %in% desired_categories) &
+         (metric %in% desired_metrics) &
+         (yr %in% desired_periods)
+         )
+
+# Create a dynamic title with word wrap
+title <- paste("Plotting the Data for:", paste(str_wrap(paste(desired_categories, collapse = ", "), width = 30), collapse = "\n"), 
+               "for", paste(str_wrap(paste(desired_metrics, collapse = ", "), width = 30), collapse = "\n"),
+               "at the", paste(str_wrap(paste(desired_levels, collapse = ", "), width = 30), collapse = "\n"),
+               "Level for the periods", paste(str_wrap(paste(periods_covered, collapse = ", "), width = 30), collapse = "\n")
+               )
+
+# Label for y-axis
+y_label <- "Percentage of Total Students"
+
+ggplot(df2plot, aes(x = yr, y = value, color = grouping)) +
+  geom_line(data = subset(df2plot, grouping == "All Subjects"), size = 2.0) +
+  geom_line(data = subset(df2plot, grouping != "All Subjects"), size = 1) +
+  labs(color = "Grouping", y = y_label) +
+  ggtitle(title) +  # Using ggtext for title
+  gghighlight(grouping == "All Subjects" | grouping == "Writing" | grouping == "Social Studies", use_direct_label = FALSE) +
+  scale_color_manual(values = c("All Subjects" = "red",
+                                "Mathematics" = "gray50",
+                                "Reading/ELA" = "gray50",
+                                "Writing" = "green",
+                                "Science" = "gray50",
+                                "Social Studies" = "blue")) +
+  scale_y_continuous(limits = c(25, 100), expand = c(0.08, 0.08)) +
+  scale_x_continuous(breaks = seq(1995, 2022, by = 1)) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)
+  )
+
+```
+
+
+
+An animated pie chart with synthetic data covering 5 years
+
+```{r}
+
+
+library(ggplot2)
+library(dplyr)
+library(purrr)
+library(gganimate)
+
+# Function to create a pie chart for a specific year
+create_pie_chart <- function(year) {
+  # Sample random values
+  random_values <- sample(100, 4, replace = TRUE)
+  
+  # Normalize the values to sum up to 100
+  normalized_values <- random_values / sum(random_values) * 100
+  
+  # Create the data frame
+  data_year <- data.frame(
+    year = year,
+    category = c("A", "B", "C", "D"),
+    value = normalized_values
+  )
+  
+  return(data_year)
+}
+
+
+# Create a list of data frames for all years
+year_data <- map(2010:2014, create_pie_chart)
+
+# Combine data frames into a single data frame
+all_years <- bind_rows(year_data, .id = "frame")
+
+# Plot creation
+p <- ggplot(all_years, aes(x = "", y = value, fill = category)) +
+  geom_bar(stat = "identity", width = 1) +
+  geom_text(aes(label = paste(category, scales::percent(value / sum(value)), sep = ": ")), 
+            position = position_stack(vjust = 0.5), size = 3) +  # Add labels with category and proportions
+  coord_polar("y", start = 0) +
+  theme_void() +
+  theme(legend.position = "none") +  # Remove legend
+  transition_states(frame, transition_length = 100, state_length = 100) +
+  labs(title = "Year: {closest_state}")  # Add a dynamic title
+
+# Animate the plot
+anim <- gganimate::animate(p, nframes = 500, width = 600, height = 400, fps = 30)
+
+# Show the animation
+anim
+
+
+```
+
+An animated pie chart with actual data
+
+```{r}
+
+
+library(ggplot2)
+library(dplyr)
+library(purrr)
+library(gganimate)
+
+# Function to create a pie chart for a specific year
+create_pie_chart <- function(year) {
+  # Sample random values
+  random_values <- sample(100, 4, replace = TRUE)
+  
+  # Normalize the values to sum up to 100
+  normalized_values <- random_values / sum(random_values) * 100
+  
+  # Create the data frame
+  data_year <- data.frame(
+    year = year,
+    category = c("A", "B", "C", "D"),
+    value = normalized_values
+  )
+  
+  return(data_year)
+}
+
+
+# Create a list of data frames for all years
+year_data <- map(2010:2014, create_pie_chart)
+
+# Combine data frames into a single data frame
+all_years <- bind_rows(year_data, .id = "frame")
+
+# Plot creation
+p <- ggplot(all_years, aes(x = "", y = value, fill = category)) +
+  geom_bar(stat = "identity", width = 1) +
+  geom_text(aes(label = paste(category, scales::percent(value / sum(value)), sep = ": ")), 
+            position = position_stack(vjust = 0.5), size = 3) +  # Add labels with category and proportions
+  coord_polar("y", start = 0) +
+  theme_void() +
+  theme(legend.position = "none") +  # Remove legend
+  transition_states(frame, transition_length = 100, state_length = 100) +
+  labs(title = "Year: {closest_state}")  # Add a dynamic title
+
+# Animate the plot
+anim <- gganimate::animate(p, nframes = 500, width = 600, height = 400, fps = 30)
+
+# Show the animation
+anim
+
+```
+
+
+
+FIX THE LABEL AES IN THIS PLOT AND NORMALIZE!
+
+```{r}
+# Specify desired categories
+desired_categories <- c("% African American", "% White", "% Hispanic", "% Asian", "% American Indian", "% Pacific Islander", "2 or More Races")
+
+# Filter the data frame
+df3plot <- df2 %>%
+  filter((grouping %in% desired_categories) &
+         (metric %in% desired_metrics) &
+         (yr %in% desired_periods))
+
+# Convert yr variable to a factor variable called 'frame'
+df3plot$frame <- factor(df3plot$yr)
+
+# Create a new column 'category' in df3plot with the desired_categories values
+df3plot$category <- factor(df3plot$grouping, levels = desired_categories)
+
+# Plot creation
+p <- ggplot(df3plot, aes(x = "", y = value, fill = category)) +
+  geom_bar(stat = "identity", width = 1) +
+  geom_text(aes(label = paste(grouping, scales::percent(round(value / sum(value), 2)), sep = ": ")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  coord_polar("y", start = 0) +
+  theme_void() +
+  theme(legend.position = "none") +
+  transition_states(frame, transition_length = 100, state_length = 100) +
+  labs(title = "Year: {closest_state}")
+
+# Animate the plot
+anim <- gganimate::animate(p, nframes = 500, width = 600, height = 400, fps = 30)
+
+
+# Save a gif
+
+anim <- gganimate::animate(p, nframes = 500, width = 600, height = 400, fps = 30)
+gganimate::anim_save("my_animation.gif", anim)
+
+
+```
+
+
+Examples from gganimate documentation
+
+
+```{r}
+
+### ** Examples
+
+anim <- ggplot(iris, aes(Sepal.Width, Petal.Width)) +
+  geom_point() +
+  labs(title = "{closest_state}") +
+  transition_states(Species, transition_length = 3, state_length = 1)
+
+anim
+
+# Use a unique group to avoid matching graphic elements
+iris$group <- seq_len(nrow(iris))
+anim1 <- ggplot(iris, aes(Sepal.Width, Petal.Width, group = group)) +
+  geom_point() +
+  labs(title = "{closest_state}") +
+  transition_states(Species, transition_length = 3, state_length = 1) +
+  enter_fade() +
+  exit_fade()
+
+anim1
+
+
+# Set "wrap = FALSE" to avoid transitioning the last state to the first - THIS DOES NOT WORK
+
+anim2 <- ggplot(iris, aes(Sepal.Width, Petal.Width)) +
+  geom_point() +
+  labs(title = "{closest_state}") +
+  transition_states(Species, transition_length = 1, state_length = 5, wrap = FALSE)
+
+anim2
+
+
+```
