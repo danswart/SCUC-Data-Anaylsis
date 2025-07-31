@@ -104,7 +104,7 @@ _freeze/
 # Rendered output (be selective)
 
 *.html
-!header.html       # Exception - let this one through to repo
-!giscus.html       # Exception - site commenting engine
+!header.html
+!giscus.html
 
 
