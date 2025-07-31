@@ -103,12 +103,8 @@ _freeze/
 
 # Rendered output (be selective)
 
-##  *.html
-
+*.html
 !header.html       # Exception - let this one through to repo
-!vignettes/*.html  # Exception - keep vignette HTML
 !giscus.html       # Exception - site commenting engine
 
 
-.Rproj.user
-.quarto
