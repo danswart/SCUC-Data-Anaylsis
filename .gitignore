@@ -105,6 +105,6 @@ _freeze/
 
 *.html
 !header.html
+!vignettes/*.html
 !giscus.html
-
 
