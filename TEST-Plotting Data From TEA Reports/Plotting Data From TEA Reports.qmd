@@ -47,7 +47,8 @@ Load data sets
 
 df1 <- read_csv(file = here::here("data","TEST SCUC 2004 TEA TAKS Data Grades 3-11.csv"))
 
-df2 <- read_csv(file = here::here("data","SCUC Snapshots 1995 to 2022-LONG.csv"))
+df2 <- read_csv(file = here::here("data","SCUC_Snapshots_1995_to_2022_LONG_CANONICAL.csv")) |>
+  dplyr::rename(year = date)
 
 ```
 
@@ -257,7 +258,8 @@ library(plotly)
 
 ### load scuc data files
 
-df2 <- read_csv(file = here::here("data","SCUC Snapshots 1995 to 2022-LONG.csv"))
+df2 <- read_csv(file = here::here("data","SCUC_Snapshots_1995_to_2022_LONG_CANONICAL.csv")) |>
+  dplyr::rename(year = date)
 
 
 
@@ -413,7 +415,8 @@ library(plotly)
 # Loan data
 ### load scuc data files
 
-df2 <- read_csv(file = here::here("data","SCUC Snapshots 1995 to 2022-LONG.csv"))
+df2 <- read_csv(file = here::here("data","SCUC_Snapshots_1995_to_2022_LONG_CANONICAL.csv")) |>
+  dplyr::rename(year = date)
 
 ##########
 # Cleanse data frame of items in descriptions that will cause failures when writing to files using the dynamic file naming function
