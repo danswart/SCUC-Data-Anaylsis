@@ -39,11 +39,11 @@ data_combined <- bind_rows(data_cleaned)
 colnames(data_combined) <- make.names(colnames(data_combined))
 
 # Write the combined tibble to a text file
-write.table(data_combined, file = "TEST_combined_snapshot_data.txt", sep = "\t", quote = FALSE, row.names = FALSE)
+write.table(data_combined, file = "TESTING_combined_snapshot_data.txt", sep = "\t", quote = FALSE, row.names = FALSE)
 
 
 
-##### DUMP INTO A DATAFRAME FOR PLOTTING #####
+##### NOW, DUMP INTO A DATAFRAME FOR PLOTTING #####
 ##### PLOT IS NONSENSICLE BUT NO TIME SPENT ON CREATING A PLOT #####
 
 
@@ -51,7 +51,7 @@ write.table(data_combined, file = "TEST_combined_snapshot_data.txt", sep = "\t",
 library(ggplot2)
 
 # Step 1: Read the .txt file into a data frame
-data_from_txt <- read.table("TEST_combined_snapshot_data.txt", sep = "\t", header = TRUE, stringsAsFactors = FALSE, fill = TRUE)
+data_from_txt <- read.table("TESTing_combined_snapshot_data.txt", sep = "\t", header = TRUE, stringsAsFactors = FALSE, fill = TRUE)
 
 # Step 2: Inspect the first few rows to understand the structure of the data
 head(data_from_txt)
